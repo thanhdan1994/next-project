@@ -1,4 +1,15 @@
 import Link from 'next/link'
+import Slider from 'react-slick'
+
+var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 2200,
+    slidesToScroll: 3
+};
+
 const Featured = props => (
     <div className="outer outer-top">
         <section className="content">
@@ -38,7 +49,7 @@ const Featured = props => (
                 })}
             </div>
             <div className="outer-slider">
-                <div className="slider single-top">
+                <Slider className="slider single-top" {...settings}>
                     {props.lists.map((object, index) => {
                         if (index > 1) {
                             return <div className="slide_item" key={index}>
@@ -49,8 +60,7 @@ const Featured = props => (
                             </div>
                         }
                     })}
-
-                </div>
+                </Slider>
             </div>
         </section>
         <aside className="sidebar">
