@@ -76,10 +76,10 @@ const DetailObject = props => (
                 </div>
             </div>
             <div className="box-300">
-                <div className="block-banner"><a href="#" title=""><img src="/static/img/banner-300x250.jpg" alt /></a></div> <span className="line-border-s mar-20" />
+                <div className="block-banner"><a href="#" title=""><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />
                 <div className="block-subscibe mar-20">
                     <form className="frm-subscibe">
-                        <input type="text" name className="txt-subscibe" placeholder="Email của bạn" />
+                        <input type="text" className="txt-subscibe" placeholder="Email của bạn" />
                         <button className="btn-subscibe">Nhận tin</button>
                     </form>
                     <h4><i className="icon icon-mail" /> Đọc những tin tức nóng nhất trên TTC</h4>
