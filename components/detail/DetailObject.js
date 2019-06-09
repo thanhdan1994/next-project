@@ -1,3 +1,4 @@
+import Link from 'next/link'
 function createMarkup(content) {
     return { __html: content };
 }
@@ -7,18 +8,18 @@ const DetailObject = props => (
         <h2 className="title">
             <i className="icon icon-laugh" />
             <div className="inner-title">
-                <h2><a href="#" title="">Đời cười</a>
+                <h2><a>Đời cười</a>
                     <span className="inner">
-                        <a href="#" title="">Bình luận</a>
-                        <a href="#" title="">Miễn bình luận</a>
-                        <a href="#" title="">Góc nhìn</a>
+                        <a>Bình luận</a>
+                        <a>Miễn bình luận</a>
+                        <a>Góc nhìn</a>
                     </span>
                 </h2>
                 <ul className="list-cat">
                     <li><a href="javascript:void(0)" rel="nofollow" title="Breaking news" className="icon-direction"> </a></li>
-                    <li><a href="#" title="">Cười xối xả</a></li>
-                    <li><a href="#" title="">TV show</a></li>
-                    <li><a href="#" title="">Show cười</a></li>
+                    <li><a>Cười xối xả</a></li>
+                    <li><a>TV show</a></li>
+                    <li><a>Show cười</a></li>
                 </ul>
             </div>
         </h2>
@@ -27,7 +28,7 @@ const DetailObject = props => (
                 <article className="art-header">
                     <h1>{props.detail.title}</h1>
                     <div className="tool-date">
-                        <a className="link-cate" href="#">{props.detail.cate_name[0]}</a>
+                        <a className="link-cate">{props.detail.cate_name[0]}</a>
                         <span><i className="fa fa-clock-o" aria-hidden="true" /> {props.detail.time_updated}</span>
                     </div>
                 </article>
@@ -44,9 +45,15 @@ const DetailObject = props => (
                             <div className="block-related" key={object.object_id}>
                                 <ul>
                                     <li>
-                                        <a href="#"><img src={object.object_id} /></a>
+                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                            <a><img src={object.object_id} /></a>
+                                        </Link>
                                         <div className="des">
-                                            <h3><a href="#" title="">{object.title}</a></h3>
+                                            <h3>
+                                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                                    <a>{object.title}</a>
+                                                </Link>
+                                            </h3>
                                             <p>{object.description}</p>
                                         </div>
                                     </li>
@@ -64,7 +71,7 @@ const DetailObject = props => (
                 </div>
                 <p className="author">{props.detail.author}</p>
                 <div className="tag-bar">
-                    <div className="tag"><a href="#" title="">cố thủ tướng</a> <a href="#" title="">Phan Văn Khải</a> <a href="#" title="">Quốc tang</a> <a href="#" title="">Cố thủ tướng</a></div>
+                    <div className="tag"><a>cố thủ tướng</a> <a>Phan Văn Khải</a> <a>Quốc tang</a> <a>Cố thủ tướng</a></div>
                 </div>
                 <div className="block-comment">
                     <div className="comment-write">
@@ -76,7 +83,7 @@ const DetailObject = props => (
                 </div>
             </div>
             <div className="box-300">
-                <div className="block-banner"><a href="#" title=""><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />
+                <div className="block-banner"><a><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />
                 <div className="block-subscibe mar-20">
                     <form className="frm-subscibe">
                         <input type="text" className="txt-subscibe" placeholder="Email của bạn" />
@@ -87,23 +94,35 @@ const DetailObject = props => (
                 </div> <span className="line-border mar-20" />
                 <div className="block-bar">
                     <h3 className="title-note">Đáng chú ý</h3>
-                    {props.lists.map((object, index)=> {
+                    {props.lists.map((object, index) => {
                         if (index === 0) {
                             return <article className="art-bar-b" key={index}>
-                            <a href="#"><img src={object.thumb_link} /></a>
-                            <h4><a href="#" title="">{object.title}</a></h4>
-                        </article>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a><img src={object.thumb_link} /></a>
+                                </Link>
+                                <h4>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a>{object.title}</a>
+                                    </Link>
+                                </h4>
+                            </article>
                         } else {
                             return <article className="art-bar-s art-hori" key={index}>
-                            <a href="#"><img src={object.thumb_link} /></a>
-                            <div className="des">
-                                <h4><a href="#" title="">{object.title}</a></h4>
-                            </div>
-                        </article>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a><img src={object.thumb_link} /></a>
+                                </Link>
+                                <div className="des">
+                                    <h4>
+                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                            <a>{object.title}</a>
+                                        </Link>
+                                    </h4>
+                                </div>
+                            </article>
                         }
                     })}
                 </div>
-                <div className="block-bar block-banner ui sticky one"><a href="#" title=""><img src="/static/img/banner-300x250.jpg" /></a></div>
+                <div className="block-bar block-banner ui sticky one"><a><img src="/static/img/banner-300x250.jpg" /></a></div>
             </div>
         </div>
     </div>

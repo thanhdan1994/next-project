@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const Entertainment = props => (
     <div className="block-enter">
         <h2 className="title">
@@ -31,8 +32,15 @@ const Entertainment = props => (
             <div className="row">
                 {props.lists.map(object => (
                     <div className="col" key={object.object_id}>
-                        <article className="art-enter-s"><a href="#"><img src={object.thumb_link} /></a>
-                            <h3><a href="#">{object.title}</a></h3>
+                        <article className="art-enter-s">
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a><img src={object.thumb_link} /></a>
+                            </Link>
+                            <h3>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a href="#">{object.title}</a>
+                                </Link>
+                            </h3>
                         </article>
                     </div>
                 ))}

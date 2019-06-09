@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const MiddleContent = props => (
     <div className="outer outer-mid  scrollToOne">
         <section className="content">
@@ -7,32 +8,47 @@ const MiddleContent = props => (
                         return <article className="art-style" key={index}>
                             <div className="slick-thumb">
                                 <div key={index}>
-                                    <a className="thumb" href=""><img src={object.thumb_link} alt="" /></a>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a className="thumb"><img src={object.thumb_link}/></a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="des">
-                                <h3><a href="#" title={object.title}>{object.title}</a></h3>
-                                <a className="btn-viewmore" href="#" title={object.title}>Xem thêm <i className="icon icon-viewmore" /></a>
+                                <h3>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a title={object.title}>{object.title}</a>
+                                    </Link>
+                                </h3>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a className="btn-viewmore" title={object.title}>Xem thêm <i className="icon icon-viewmore" /></a>
+                                </Link>
                             </div>
                         </article>
                     }
                     if (index === 1) {
                         return <article className="art-lastest art-b" key={index}>
-                            <a href="#" title={object.title}><img src={object.thumb_link} style={{}} alt="" /><i className="icon icon-video" /></a>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                            </Link>
                             <div className="des">
-                                <h4 className="hasComment"><a href="#" title={object.title}>{object.title}</a> <span className="outer-icon"><span className="number">43</span><i className="icon icon-comment" /></span></h4>
-                                <a className="cat" href="#">Thời sự</a>
-                                <article className="art-s">
-                                    <h4><a href="#" title={object.title}>Sương sớm, À ố Show, Teh Dar diễn ở phố cổ Hội An</a></h4>
-                                </article>
+                                <h4 className="hasComment">
+                                    <Link>
+                                        <a  title={object.title}>{object.title}</a>
+                                    </Link>
+                                </h4>
                             </div>
                         </article>
                     } else {
                         return <article className="art-lastest" key={index}>
-                            <a href="#" title={object.title}><img src={object.thumb_link} style={{}} alt="" /><i className="icon icon-video" /></a>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a title={object.title}><img src={object.thumb_link}/><i className="icon icon-video" /></a>
+                            </Link>
                             <div className="des">
-                                <h4><a href="#" title={object.title}>{object.title}</a></h4>
-                                <a className="cat" href="#">Thời sự</a>
+                                <h4>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a title={object.title}>{object.title}</a>
+                                    </Link>
+                                </h4>
                             </div>
                         </article>
                     }
@@ -41,19 +57,31 @@ const MiddleContent = props => (
         </section>
         <aside className="sidebar">
             <div className="block-bar ui sticky one">
-                <h3 className="title-note"><a href="#" title="">Đáng chú ý</a></h3>
+                <h3 className="title-note">Đáng chú ý</h3>
                 <div className="inner-gray">
                     {props.lists.listAside.map((object, index) => {
                         if (index === 0) {
                             return <article className="art-bar-b" key={index}>
-                                <a href="#"><img src={object.thumb_link} alt=""/></a>
-                                <h4><a href="#" title="">{object.title}</a></h4>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a><img src={object.thumb_link}/></a>
+                                </Link>
+                                <h4>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a>{object.title}</a>
+                                    </Link>
+                                </h4>
                             </article>
                         }
                         return <article className="art-bar-s art-hori" key={index}>
-                            <a href="#"><img src={object.thumb_link} alt=""/></a>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a><img src={object.thumb_link}/></a>
+                            </Link>
                             <div className="des">
-                                <h4><a href="#" title="">{object.title}</a></h4>
+                                <h4>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a href="#" title="">{object.title}</a>
+                                    </Link>
+                                </h4>
                             </div>
                         </article>
                     })}

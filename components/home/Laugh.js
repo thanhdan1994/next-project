@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const Laugh = props => (
     <div className="block-laugh">
         <h2 className="title">
@@ -26,10 +27,11 @@ const Laugh = props => (
                     </article>
                     {props.lists.map(object => (
                         <article className="art-lastest" key={object.object_id}>
-                            <a href="#"><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                            </Link>
                             <div className="des">
                                 <h4 className="hasComment"><a href="#">{object.title}</a></h4>
-                                <a className="cat" href="#">Thời sự</a>
                             </div>
                         </article>
                     ))}

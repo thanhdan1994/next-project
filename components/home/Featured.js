@@ -54,8 +54,14 @@ const Featured = props => (
                         if (index > 1) {
                             return <div className="slide_item" key={index}>
                                 <article className="art-slider">
-                                    <a className="thumb" href={`/news/${object.object_id}`}><img src={object.thumb_link} alt={object.title} /></a>
-                                    <h3 className="hasComment"><a href={`/news/${object.object_id}`} title={object.title}>{object.title}</a></h3>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a className="thumb"><img src={object.thumb_link} alt={object.title} /></a>
+                                    </Link>
+                                    <h3 className="hasComment">
+                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                            <a title={object.title}>{object.title}</a>
+                                        </Link>
+                                    </h3>
                                 </article>
                             </div>
                         }

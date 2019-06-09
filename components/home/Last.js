@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const Last = props => (
     <div className="block block-last">
         <div className="box box-left">
@@ -40,8 +41,14 @@ const Last = props => (
                 {props.sport.map(object => (
                     <div className="col-6" key={object.object_id}>
                     <article className="art art-young">
-                        <a href="#"><img src={object.thumb_link} /></a>
-                        <h3><a href="#">{object.title}</a></h3>
+                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                            <a><img src={object.thumb_link} /></a>
+                        </Link>
+                        <h3>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a>{object.title}</a>
+                            </Link>
+                        </h3>
                     </article>
                 </div>
                 ))}

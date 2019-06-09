@@ -1,3 +1,4 @@
+import Link from 'next/link'
 function YouCanCare(props) {
     return (
         <div className="list-enter">
@@ -5,8 +6,15 @@ function YouCanCare(props) {
             <div className="row">
                 {props.lists.map((object, index) => (
                     <div className="col" key={index}>
-                        <article className="art-enter-s"><a href="#"><img src={object.thumb_link} /></a>
-                            <h3><a href="#">{object.title}</a></h3>
+                        <article className="art-enter-s">
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a><img src={object.thumb_link} /></a>
+                            </Link>
+                            <h3>
+                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                    <a>{object.title}</a>
+                                </Link>
+                            </h3>
                         </article>
                     </div>
                 ))}

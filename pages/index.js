@@ -33,7 +33,6 @@ const Index = props => (
             "url" : ""
           `}
       </script>
-      <script id="arf-core-js" onerror="window.admerrorload=true;" src="//media1.admicro.vn/cms/Arf.min.js" async></script>
     </Head>
     <div className="main">
       <div className="container">

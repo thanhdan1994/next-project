@@ -4,7 +4,6 @@ import Head from 'next/head'
 import DetailObject from '../components/detail/DetailObject.js';
 import YouCanCare from '../components/detail/YouCanCare.js';
 import LastBlock from '../components/detail/LastBlock.js';
-import Ads from '../components/detail/Ads.js';
 
 const Post = props => (
   <Layout>
@@ -21,8 +20,6 @@ const Post = props => (
       <script type="application/ld+json">
 
       </script>
-      <script type="text/javascript" src="/static/js/ads.js"></script>
-      <script id="arf-core-js" onerror="window.admerrorload=true;" src="https://media1.admicro.vn/cms/Arf.min.js" async></script>
     </Head>
     <div className="main">
       <div className="container">
@@ -30,7 +27,6 @@ const Post = props => (
         <YouCanCare lists={props.listYouCanCare} />
         <span className="line-border"></span>
         <LastBlock prior={props.dataLastBlock.prior} lists={props.dataLastBlock.listLastBlock}/>
-        <Ads id="qc1" code="jmvf5po0"/>
       </div>
     </div>
   </Layout>

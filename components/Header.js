@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Ads from './detail/Ads';
 const Header = () => (
   <header>
     <div className="header-top">
@@ -42,11 +41,6 @@ const Header = () => (
       </div>
     </div>
     <div className="banner-top">
-      <Ads id="qc2" code="jmvf3xc3"/>
-      <Ads id="qc6" code="jmvf5po0"/>
-      <Ads id="qc3" code="jmvf5po0"/>
-      <Ads id="qc4" code="jmvf5po0"/>
-      <Ads id="qc5" code="jmvf5po0"/>
     </div>
   </header>
 

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const Video = props => (
     <div className="block-video">
         <h2 className="title">
@@ -63,8 +64,15 @@ const Video = props => (
         <div className="row">
             {props.lists.map(object => (
                 <div className="col-sm-3" key={object.object_id}>
-                    <article className="art-video-top playing"><a className="thumb" href="#" title=""><img src={object.thumb_link} /><span className="tit time">Đang chạy</span></a>
-                        <h3><a href="#">{object.title}</a></h3>
+                    <article className="art-video-top playing">
+                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                            <a className="thumb"><img src={object.thumb_link} /></a>
+                        </Link>
+                        <h3>
+                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                <a>{object.title}</a>
+                            </Link>
+                        </h3>
                     </article>
                 </div>
             ))}
