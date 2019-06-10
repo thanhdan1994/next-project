@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import validator from 'validator';
@@ -37,16 +37,25 @@ class Comment extends Component {
         let name = this.state.name;
         let email = this.state.email;
         if (validator.isAlpha(name) && validator.isEmail(email)) {
-            fetch('https://mywebsite.com/endpoint/', {
+            fetch('http://pc.tuoitrecuoi.vn/comment/sendcomment', {
+                mode: 'no-cors',
                 method: 'POST',
                 headers: {
-                    Accept: 'application/json',
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstParam: 'yourValue',
-                    secondParam: 'yourOtherValue',
-                }),
+                    author_name: name,
+                    author_email: email,
+                    object_id: 300,
+                    object_title: "Ăn đất, ăn tất, ăn như xáng xúc",
+                    object_url: "https://sbetacuoi.tuoitre.vn/ttc/tin-tuc/doi-cuoi/20190523/an-dat-an-tat-an-nhu-xang-xuc/522.html",
+                    author_ip: "2405:4800:52a7:fe7:fd85:9d0e:d0d9:8d0b",
+                    content: "gui thu cai binh luan",
+                    app_id: 15
+                })
+            }).then(res => {
+                console.log(res)
             });
         } else {
             alert("Invalid")
