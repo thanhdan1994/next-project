@@ -45,8 +45,6 @@ Post.getInitialProps = async function (context) {
   const res5 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=5');
   const listLastBlock = await res5.json();
 
-  console.log(`Object Title: ${objectDetail.title}`);
-
   return {
     objectDetail: objectDetail,
     listHighlights: listHighlights,

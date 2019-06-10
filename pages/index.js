@@ -70,8 +70,7 @@ Index.getInitialProps = async function () {
   const listYounger = await res7.json();
   const res8 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=4&page=4');
   const listSport = await res8.json();
-
-  console.log(`Show data fetched. Count: ${dataMiddleAside.length}`);
+  
   return {
     listFeatured: listFeatured,
     dataMiddle: {

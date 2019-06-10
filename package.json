@@ -12,11 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-cookie": "^4.0.0",
     "react-dom": "^16.8.6",
-    "react-slick": "^0.24.0"
+    "react-slick": "^0.24.0",
+    "validator": "^11.0.0"
   }
 }
