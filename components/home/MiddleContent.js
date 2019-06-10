@@ -32,8 +32,8 @@ const MiddleContent = props => (
                             </Link>
                             <div className="des">
                                 <h4 className="hasComment">
-                                    <Link>
-                                        <a  title={object.title}>{object.title}</a>
+                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
+                                        <a title={object.title}>{object.title}</a>
                                     </Link>
                                 </h4>
                             </div>
@@ -79,7 +79,7 @@ const MiddleContent = props => (
                             <div className="des">
                                 <h4>
                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                    <a href="#" title="">{object.title}</a>
+                                        <a title="">{object.title}</a>
                                     </Link>
                                 </h4>
                             </div>

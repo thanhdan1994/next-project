@@ -35,7 +35,11 @@ const Header = () => (
         <ul className="clearfix">
           <li className="active"><a href="#" title="ĐỜI CƯỜI">Tin tức</a></li>
           <li><a href="#" title="GIẢI TRÍ">Biếm họa</a></li>
-          <li><a href="#" title="VIDEO">Video</a></li>
+          <li>
+            <Link href="/video">
+              <a title="VIDEO">Video</a>
+            </Link>
+          </li>
           <li className="send"><a className="btn-send" href="#" title="">+ Gửi bài</a></li>
         </ul>
       </div>
