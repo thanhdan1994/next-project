@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Comment from '../comment/Comment'
 function createMarkup(content) {
     return { __html: content };
 }
@@ -73,14 +74,7 @@ const DetailObject = props => (
                 <div className="tag-bar">
                     <div className="tag"><a>cố thủ tướng</a> <a>Phan Văn Khải</a> <a>Quốc tang</a> <a>Cố thủ tướng</a></div>
                 </div>
-                <div className="block-comment">
-                    <div className="comment-write">
-                        <h4>Viết bình luận</h4>
-                        <textarea className="box-reply-cm" data-toggle="modal" data-target="#modalCom_1" placeholder="Viết bình luận của bạn ở đây, không vượt quá 300 ký tự" defaultValue={""} />
-                        <div className="text-right">
-                        </div>
-                    </div>
-                </div>
+                <Comment />
             </div>
             <div className="box-300">
                 <div className="block-banner"><a><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />

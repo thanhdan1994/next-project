@@ -16,6 +16,7 @@ const Post = props => (
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
       <link href="/static/css/style.min.css" rel="stylesheet" />
+      <script src="/static/js/lib.min.js" async></script>
       {/* GENERAL GOOGLE SEARCH META */}
       <script type="application/ld+json">
 
