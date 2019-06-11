@@ -10,6 +10,18 @@ class Video extends Component {
         const listVideoNext = await res.json();
         return { listVideoNext }
     }
+
+    componentDidMount() {
+        if ($('.mCustomScrollbar').length > 0) {
+            $('.mCustomScrollbar').mCustomScrollbar({
+                scrollInertia: 500
+            });
+        }
+        const script = document.createElement("script");
+        script.src = '//player.tuoitre.vn/player/static/playerInit.js'
+        script.async = true
+        document.body.appendChild(script);
+    }
     render() {
         return (
             <Layout>
@@ -22,6 +34,7 @@ class Video extends Component {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
                     <link href="/static/css/style.min.css" rel="stylesheet" />
+                    <script src="/static/js/lib.min.js"></script>
                 </Head>
                 <div className="main">
                     <div className="container">
@@ -46,9 +59,16 @@ class Video extends Component {
                                         <div className="video-wrap">
                                             <div className="video">
                                                 <div style={{ backgroundColor: '#f6f6f6' }} className="media-content">
-                                                    <video controls id="video_72673" poster="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/thumb-12-1533785196.png" style={{ width: '100%' }} className="video-js vjs-default-skin vjs-big-play-centered">
+                                                    <div className="tt-vplayer-content">
+                                                        <video id="ttplayer_8"
+                                                         className="tt-vplayer video-js tt-vplayer-visibility"
+                                                         style={{ width: '100%' }}
+                                                         poster="http://static.zyz.local/ttc/i/s1280/2019/04/25/anh-gai-xinh-hd-1556156997-16x9.jpg"
+                                                         data-vid="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" />
+                                                    </div>
+                                                    {/* <video controls id="video_72673" poster="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/thumb-12-1533785196.png" style={{ width: '100%' }} className="video-js vjs-default-skin vjs-big-play-centered">
                                                         <source src="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" type="video/mp4" />
-                                                    </video>
+                                                    </video> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -91,26 +111,6 @@ class Video extends Component {
                             </div>
                         </div>
                     </div>
-                    <style jsx>{`
-                        .scroll-media {
-                            height: 878px;
-                            overflow-y:scroll;
-                        }
-                        /* width */
-                        ::-webkit-scrollbar {
-                        width: 3px;
-                        }
-                        /* Track */
-                        ::-webkit-scrollbar-track {
-                        background: #f1f1f1; 
-                        }
-                        
-                        /* Handle */
-                        ::-webkit-scrollbar-thumb {
-                        background: #888; 
-                        }
-                    `}
-                    </style>
                 </div>
             </Layout>
         )

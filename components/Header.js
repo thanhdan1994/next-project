@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import ActiveLink from './ActiveLink'
 const Header = () => (
   <header>
     <div className="header-top">
@@ -15,9 +16,9 @@ const Header = () => (
     <div className="header-middle">
       <div className="container clearfix">
         <h1>
-        <Link href="/">
-          <a title="Tuổi Trẻ News" className="sprite-tvo logoheader"><img src="/static/img/logo-ttc-pc.svg" alt=""/></a>
-        </Link>
+          <Link href="/">
+            <a title="Tuổi Trẻ News" className="sprite-tvo logoheader"><img src="/static/img/logo-ttc-pc.svg" alt="" /></a>
+          </Link>
         </h1>
         <div id="search-frm" className="frm-search fr">
           <input id="txtSearch" type="text" placeholder="Nhập nội dung cần tìm ..." className="txt-search" />
@@ -33,18 +34,15 @@ const Header = () => (
     <div className="header-menu ui sticky">
       <div className="container">
         <ul className="clearfix">
-          <li className="active"><a href="#" title="ĐỜI CƯỜI">Tin tức</a></li>
-          <li><a href="#" title="GIẢI TRÍ">Biếm họa</a></li>
-          <li>
-            <Link href="/video">
-              <a title="VIDEO">Video</a>
-            </Link>
-          </li>
+          <ActiveLink href='/'>Tin tức</ActiveLink>
+          <ActiveLink href='/biem-hoa'>Biếm họa</ActiveLink>
+          <ActiveLink href='/video'>Video</ActiveLink>
           <li className="send"><a className="btn-send" href="#" title="">+ Gửi bài</a></li>
         </ul>
       </div>
     </div>
     <div className="banner-top">
+      <div className="container"><img src="/static/img/banner-980x90.jpg" /></div>
     </div>
   </header>
 
