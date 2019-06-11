@@ -8,7 +8,7 @@ import LastBlock from '../components/detail/LastBlock.js';
 const Post = props => (
   <Layout>
     <Head>
-      <title>TUỔI TRẺ CƯỜI | INDEX</title>
+      <title>{props.objectDetail.title} - Tuổi trẻ cười</title>
       <meta name="description" content="" />
       <meta name="keywords" content="" />
       <meta name="robots" content="index, follow" />
@@ -35,7 +35,7 @@ const Post = props => (
 
 Post.getInitialProps = async function (context) {
   const { id } = context.query;
-  const res = await fetch(`http://api.tuoitre.vn/mobileapp/objectdetail?token=da039e81&id=${id}`);
+  const res = await fetch(`https://api.tuoitre.vn/mobileapp/objectdetail?token=da039e81&id=${id}`);
   const objectDetail = await res.json();
   const res2 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=2');
   const listHighlights = await res2.json();

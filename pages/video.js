@@ -26,7 +26,7 @@ class Video extends Component {
         return (
             <Layout>
                 <Head>
-                    <title>TUỔI TRẺ CƯỜI | INDEX</title>
+                    <title>Video - Tuổi trẻ cười</title>
                     <meta name="description" content="" />
                     <meta name="keywords" content="" />
                     <meta name="robots" content="index, follow" />
@@ -63,7 +63,7 @@ class Video extends Component {
                                                         <video id="ttplayer_8"
                                                          className="tt-vplayer video-js tt-vplayer-visibility"
                                                          style={{ width: '100%' }}
-                                                         poster="http://static.zyz.local/ttc/i/s1280/2019/04/25/anh-gai-xinh-hd-1556156997-16x9.jpg"
+                                                         poster="/static/img/banner-300x250.jpg"
                                                          data-vid="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" />
                                                     </div>
                                                     {/* <video controls id="video_72673" poster="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/thumb-12-1533785196.png" style={{ width: '100%' }} className="video-js vjs-default-skin vjs-big-play-centered">

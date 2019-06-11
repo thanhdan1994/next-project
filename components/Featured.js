@@ -75,7 +75,7 @@ export default class Featured extends Component {
                 </section>
                 <aside className="sidebar">
                     <div className="block-bar block-qc">
-                        <a href="#"><img src="/static/img/banner-300x600.jpg" alt="" /></a>
+                        <a><img src="/static/img/banner-300x600.jpg" alt="" /></a>
                     </div>
                 </aside>
             </div>

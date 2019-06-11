@@ -48,7 +48,7 @@ export default class Index extends Component {
     return (
       <Layout>
         <Head>
-          <title>TUỔI TRẺ CƯỜI | INDEX</title>
+          <title>Trang chủ - Tuổi trẻ cười</title>
           <meta name="description" content="" />
           <meta name="keywords" content="" />
           <meta name="robots" content="index, follow" />
