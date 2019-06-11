@@ -17,9 +17,13 @@ const Video = props => (
                 <div className="video-wrap">
                     <div className="video">
                         <div style={{ backgroundColor: '#f6f6f6' }} className="media-content">
-                            <video id="video_72673" poster="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/thumb-12-1533785196.png" style={{ width: '100%' }} className="video-js vjs-default-skin vjs-big-play-centered">
-                                <source src="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" type="video/mp4" />
-                            </video>
+                            <div className="tt-vplayer-content">
+                                <video id="ttplayer_8"
+                                    className="tt-vplayer video-js tt-vplayer-visibility"
+                                    style={{ width: '100%' }}
+                                    poster="/static/img/banner-300x250.jpg"
+                                    data-vid="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" />
+                            </div>
                         </div>
                     </div>
                 </div>
