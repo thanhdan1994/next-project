@@ -17,10 +17,6 @@ class Video extends Component {
                 scrollInertia: 500
             });
         }
-        const script = document.createElement("script");
-        script.src = '//player.tuoitre.vn/player/static/playerInit.js'
-        script.async = true
-        document.body.appendChild(script);
     }
     render() {
         return (
@@ -35,6 +31,7 @@ class Video extends Component {
                     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
                     <link href="/static/css/style.min.css" rel="stylesheet" />
                     <script src="/static/js/lib.min.js"></script>
+                    <script src="//player.tuoitre.vn/player/static/playerInit.js" async></script>
                 </Head>
                 <div className="main">
                     <div className="container">
