@@ -11,7 +11,6 @@ class Comment extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.handleClose = this.handleClose.bind(this);
         this.handleSendComment = this.handleSendComment.bind(this);
         this.handleSendCommentModal = this.handleSendCommentModal.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -21,10 +20,6 @@ class Comment extends Component {
             name: '',
             email: '',
         };
-    }
-
-    handleClose() {
-        this.setState({ showModal: false });
     }
 
     handleSendComment() {
@@ -79,7 +74,6 @@ class Comment extends Component {
     render() {
         return (
             <div className="block-comment">
-                {this.state.showModal ? "hehe" : "hihi"}
                 <div className="comment-write">
                     <h4>Viết bình luận</h4>
                     <textarea className="box-reply-cm" placeholder="Viết bình luận của bạn ở đây" />
@@ -120,33 +114,6 @@ class Comment extends Component {
                         </div>
                     </div>
                 </div>
-
-                {/* <Modal show={this.state.showModal} onHide={this.handleClose}>
-                    <button onClick={this.handleClose} type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <Modal.Body>
-                        <h3 className="title-modal">Bình luận</h3>
-
-                        <form className="frm-general">
-                            <div className="form-group">
-                                <label>Tên :</label>
-                                <input className="form-control" onChange={this.handleChangeName} type="text" />
-                            </div>
-                            <div className="form-group">
-                                <label>Email :</label>
-                                <input className="form-control" onChange={this.handleChangeEmail} type="email" />
-                            </div>
-                            <div className="outer-btn-social">
-                                <div className="col">
-                                    <a className="btn-send-1" onClick={this.handleSendCommentModal}>Gửi</a>
-                                </div>
-                            </div>
-                        </form>
-
-                    </Modal.Body>
-
-                </Modal> */}
             </div>
         )
     }
