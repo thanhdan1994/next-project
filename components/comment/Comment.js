@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import validator from 'validator';
+import axios from 'axios';
 
 class Comment extends Component {
     static propTypes = {
@@ -30,38 +31,28 @@ class Comment extends Component {
     handleSendCommentModal() {
         let name = this.state.name;
         let email = this.state.email;
-        if (validator.isAlpha(name) && validator.isEmail(email)) {
-            $.ajax({
-                url: 'http://pc.tuoitrecuoi.vn/comment/sendcomment',
-                type: 'POST',
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': 'sfsdfsdf'
-                },
-                data: {
-                    object_id: 300,
-                    app_id: 15,
-                    object_title: 'Ăn đất, ăn tất, ăn như xáng xúc',
-                    object_url: 'https://sbetacuoi.tuoitre.vn/ttc/tin-tuc/doi-cuoi/20190523/an-dat-an-tat-an-nhu-xang-xuc/522.html',
-                    term_id: 2,
-                    author_name: name,
-                    author_email: email,
-                    content: 'hihi',
-                    author_ip: '192.168.60.152',
-                },
-                success: function (data) {
-                    alert(data.message + '. Cám ơn!');
-                    $('#modalCom_1').modal('hide');
-                    $("textarea").val('');
-                },
-                error : function () {
-                    alert("Hệ thống bình luận đang được bảo trì, bạn vui lòng quay lại sau!");
-                    $('#modalCom_1').modal('hide');
-                }
-            });
-        } else {
-            alert("Invalid")
-        }
+        axios({
+            method: 'POST',
+            url: "http://pc.tuoitrecuoi.vn/comment/sendcomment",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+            data: {
+                object_id: 300,
+                app_id: 15,
+                object_title: 'Ăn đất, ăn tất, ăn như xáng xúc',
+                object_url: 'https://sbetacuoi.tuoitre.vn/ttc/tin-tuc/doi-cuoi/20190523/an-dat-an-tat-an-nhu-xang-xuc/522.html',
+                term_id: 2,
+                author_name: name,
+                author_email: email,
+                content: 'hihi',
+                author_ip: '192.168.60.152',
+            },
+        }).then(res => {
+            console.log(res.data)
+        })
+        $('#modalCom_1').modal('hide')
     }
 
     handleChangeName(e) {

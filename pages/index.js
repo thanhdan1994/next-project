@@ -8,8 +8,8 @@ import Laugh from '../components/home/Laugh.js';
 import Entertainment from '../components/home/Entertainment.js';
 import Last from '../components/home/Last.js';
 import React, { Component } from 'react';
-import JsonLd from '../components/JsonLd';
 import HeadHome from '../components/home/HeadHome'
+import Footer from '../components/Footer.js';
 
 export default class Index extends Component {
   static async getInitialProps() {
@@ -45,6 +45,25 @@ export default class Index extends Component {
       }
     }
   }
+
+  componentDidMount() {
+    if ($(".btn-top").length > 0) {
+      $(window).scroll(function () {
+        var e = $(window).scrollTop();
+        if (e > 100) {
+          $(".btn-top").show()
+        } else {
+          $(".btn-top").hide()
+        }
+      });
+      $(".btn-top").click(function () {
+        $('body,html').animate({
+          scrollTop: 0
+        })
+      });
+    }
+  }
+
   render() {
     const ldJson = {
       "@context": "http://schema.org",
@@ -73,6 +92,8 @@ export default class Index extends Component {
             <Last younger={this.props.dataLastBlock.listYounger} sport={this.props.dataLastBlock.listSport} />
           </div>
         </div>
+        <Footer />
+        <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
       </Layout>
     )
   }

@@ -6,6 +6,7 @@ import YouCanCare from '../components/detail/YouCanCare.js';
 import LastBlock from '../components/detail/LastBlock.js';
 import JsonLd from '../components/JsonLd';
 import React, { Component } from 'react';
+import Footer from '../components/Footer.js';
 
 export default class Post extends Component {
   static async getInitialProps(context) {
@@ -31,6 +32,25 @@ export default class Post extends Component {
       }
     };
   }
+
+  componentDidMount() {
+    if ($(".btn-top").length > 0) {
+      $(window).scroll(function () {
+        var e = $(window).scrollTop();
+        if (e > 100) {
+          $(".btn-top").show()
+        } else {
+          $(".btn-top").hide()
+        }
+      });
+      $(".btn-top").click(function () {
+        $('body,html').animate({
+          scrollTop: 0
+        })
+      });
+    }
+  }
+
   render() {
     const ldJson = {
       "@context": "http://schema.org",
@@ -88,6 +108,7 @@ export default class Post extends Component {
           <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
           <link href="/static/css/style.min.css" rel="stylesheet" />
           <script src="/static/js/lib.min.js"></script>
+          <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>
           {/* GENERAL GOOGLE SEARCH META */}
           <JsonLd data={ldJson} />
         </Head>
@@ -99,6 +120,8 @@ export default class Post extends Component {
             <LastBlock prior={this.props.dataLastBlock.prior} lists={this.props.dataLastBlock.listLastBlock} />
           </div>
         </div>
+        <Footer />
+        <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
       </Layout>
     )
   }

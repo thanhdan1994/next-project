@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import Comment from '../components/comment/Comment'
+import Footer from '../components/Footer.js';
 
 class Video extends Component {
     static async getInitialProps() {
@@ -17,7 +18,24 @@ class Video extends Component {
                 scrollInertia: 500
             });
         }
+
+        if ($(".btn-top").length > 0) {
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                if (e > 100) {
+                    $(".btn-top").show()
+                } else {
+                    $(".btn-top").hide()
+                }
+            });
+            $(".btn-top").click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                })
+            });
+        }
     }
+
     render() {
         return (
             <Layout>
@@ -31,7 +49,7 @@ class Video extends Component {
                     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
                     <link href="/static/css/style.min.css" rel="stylesheet" />
                     <script src="/static/js/lib.min.js"></script>
-                    <script src="//player.tuoitre.vn/player/static/playerInit.js" async></script>
+                    <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>
                 </Head>
                 <div className="main">
                     <div className="container">
@@ -58,10 +76,10 @@ class Video extends Component {
                                                 <div style={{ backgroundColor: '#f6f6f6' }} className="media-content">
                                                     <div className="tt-vplayer-content">
                                                         <video id="ttplayer_8"
-                                                         className="tt-vplayer video-js tt-vplayer-visibility"
-                                                         style={{ width: '100%' }}
-                                                         poster="/static/img/banner-300x250.jpg"
-                                                         data-vid="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" />
+                                                            className="tt-vplayer video-js tt-vplayer-visibility"
+                                                            style={{ width: '100%' }}
+                                                            poster="/static/img/banner-300x250.jpg"
+                                                            data-vid="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" />
                                                     </div>
                                                     {/* <video controls id="video_72673" poster="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/thumb-12-1533785196.png" style={{ width: '100%' }} className="video-js vjs-default-skin vjs-big-play-centered">
                                                         <source src="https://static.tuoitrenews.vn/ttnew/r/2018/08/09/sand-boarding-1533785186.mp4" type="video/mp4" />
@@ -109,6 +127,8 @@ class Video extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
+                <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
             </Layout>
         )
     }
