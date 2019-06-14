@@ -29,11 +29,10 @@ const DetailObject = props => (
                 <article className="art-header">
                     <h1>{props.detail.title}</h1>
                     <div className="tool-date">
-                        <a className="link-cate">{props.detail.cate_name[0]}</a>
+                        <a className="link-cate" href="">{props.detail.cate_name[0]}</a>
                         <span><i className="fa fa-clock-o" aria-hidden="true" /> {props.detail.time_updated}</span>
                     </div>
                 </article>
-                <span className="line-border-solid" />
             </div>
         </div>
         <div className="row-1 scrollToOne">

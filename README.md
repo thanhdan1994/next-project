@@ -1,0 +1,1 @@
+object detail: zyz_kobdt_11
