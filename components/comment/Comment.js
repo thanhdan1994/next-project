@@ -25,26 +25,7 @@ class Comment extends Component {
 
     handleSendComment() {
         const { cookies } = this.props;
-        // cookies.get('isLogin') ? '' : $('#modalCom_1').modal('show')
-
-        $.ajax({
-            method: 'POST',
-            url: "http://pc.tuoitrecuoi.vn/comment/sendcomment",
-            // data: {
-            //     object_id: 300,
-            //     app_id: 15,
-            //     // object_title: 'Ăn đất, ăn tất, ăn như xáng xúc',
-            //     // object_url: 'https://sbetacuoi.tuoitre.vn/ttc/tin-tuc/doi-cuoi/20190523/an-dat-an-tat-an-nhu-xang-xuc/522.html',
-            //     // term_id: 2,
-            //     // author_name: name,
-            //     // author_email: email,
-            //     // content: 'hihi',
-            //     // author_ip: '192.168.60.152',
-            // },
-            success: function(data) {
-                console.log(data)
-            }
-        })
+        cookies.get('infoUser') ? alert("gửi bình luận đã đăng nhập") : $('#modalCom_1').modal('show')
     }
 
     handleSendCommentModal(e) {

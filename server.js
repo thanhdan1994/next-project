@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const cookieParser = require('cookie-parser');
 // const redis = require('redis');
 // const client = redis.createClient();
 
@@ -12,9 +13,9 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(cookieParser());
 
     server.get('/post/:id', (req, res) => {
-      console.log("hihi");
       if (req.headers.host === 'my-app.com') {
         app.setAssetPrefix('http://cdn.com/myapp');
       } else {
@@ -22,7 +23,6 @@ app
       }
       const actualPage = '/post';
       const queryParams = { id: req.params.id };
-      console.log("server render");
       app.render(req, res, actualPage, queryParams);
     });
 
