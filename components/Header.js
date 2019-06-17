@@ -9,6 +9,7 @@ function Header() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(false);
+
   function handleLogin(e) {
     e.preventDefault()
     if (email === 'thanhdan26081994@gmail.com' && password === '123456@') {
@@ -19,6 +20,11 @@ function Header() {
     }
     setMessage(true)
   }
+
+  function handleLogout() {
+    setIsLogin(false);
+    removeCookie('infoUser')
+  }
   return (
     <header>
       <div className="header-top">
@@ -28,8 +34,22 @@ function Header() {
             <li className="fl"><a title="Tuổi trẻ cuối tuần" href="#" rel="nofollow" target="_blank"><img src="/static/img/LogoTTCT.png" alt="logo tuổi trẻ TV" /></a></li>
             <li className="fl"><a title="Tuổi trẻ TV" href="#" rel="nofollow" target="_blank"><img src="/static/img/Tuoi-tre-tv.png" alt="logo tuổi trẻ TV" /></a></li>
             <li className="link-login pull-right">
-              <i className="icon-user" />
-              {(isLogin) ? <span>Trần Thanh Dân</span> : <span>
+              {/* <i className="icon-user" /> */}
+              {(isLogin) ? <div className="dropdown dropdown-user">
+                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <img className="img-login" src="https://media.pixcove.com/N/8/8/Man-Gentleman-Silhouette-Gray-Free-Illustrations-F-0424.jpg" />
+                              trần thanh dân
+                            </a>
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end">
+                              <a className="dropdown-item">Bình luận của bạn</a>
+                              <a className="dropdown-item">Bài đã duyệt</a>
+                              <a className="dropdown-item">Cài đặt tài khoản</a>
+                              <a className="dropdown-item">
+                                <strong onClick={handleLogout}>Đăng xuất</strong>
+                              </a>
+                            </div>
+                          </div>
+                    : <span>
                     <Link href="#">
                       <a>Đăng ký</a>
                     </Link>
