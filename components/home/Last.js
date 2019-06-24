@@ -1,24 +1,39 @@
 import Link from 'next/link'
+import { echoThumbnail } from '../../constant/Helpers';
 const Last = props => (
     <div className="block block-last">
         <div className="box box-left">
             <h2 className="title">
                 <i className="icon icon-young" />
                 <div className="inner-title">
-                    <h2><a href="#">Sống trẻ</a></h2>
+                    <h2 className="active">
+                        <Link href="/song-tre">
+                        <a>Sống trẻ</a>
+                        </Link>
+                    </h2>
                     <ul className="list-cat">
-                        <li><a href="#">Giới trẻ 360</a></li>
-                        <li><a href="#">Đọc chậm</a></li>
-                        <li><a href="#">NGỡ rối tơ lòng</a></li>
+                    {props.dataLeft.list_tag.map((tag, index) => (
+                        <li key={index}>
+                            <Link href={tag.tag_link}>
+                                <a>{tag.tag_name}</a>
+                            </Link>
+                        </li>
+                    ))}
                     </ul>
                 </div>
             </h2>
             <div className="row">
-                {props.younger.map(object => (
-                    <div className="col-6" key={object.object_id}>
-                    <article className="art art-young" key={object.object_id}>
-                        <a href="#"><img src={object.thumb_link} /></a>
-                        <h3><a href="#">{object.title}</a></h3>
+                {props.dataLeft.data.map(object => (
+                    <div className="col-6" key={object.id}>
+                    <article className="art art-young" key={object.id}>
+                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                    </Link>
+                        <h3>
+                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                <a>{object.object_title}</a>
+                            </Link>
+                        </h3>
                     </article>
                 </div>
                 ))}
@@ -28,25 +43,32 @@ const Last = props => (
             <h2 className="title">
                 <i className="icon icon-sport" />
                 <div className="inner-title">
-                    <h2><a href="#">Thể thao</a></h2>
+                    <h2 className="active">
+                        <Link href="/the-thao">
+                            <a>Thể thao</a>
+                        </Link>
+                    </h2>
                     <ul className="list-cat">
-                        <li><a href="#">Khoảng khắc</a></li>
-                        <li><a href="#">Quan điểm</a></li>
-                        <li><a href="#">Video</a></li>
-                        <li><a href="#">(Mục cho fan)</a></li>
+                    {props.dataRight.list_tag.map((tag, index) => (
+                        <li key={index}>
+                            <Link href={tag.tag_link}>
+                                <a>{tag.tag_name}</a>
+                            </Link>
+                        </li>
+                    ))}
                     </ul>
                 </div>
             </h2>
             <div className="row">
-                {props.sport.map(object => (
-                    <div className="col-6" key={object.object_id}>
+                {props.dataRight.data.map(object => (
+                    <div className="col-6" key={object.id}>
                     <article className="art art-young">
-                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                            <a><img src={object.thumb_link} /></a>
+                        <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                            <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                         </Link>
                         <h3>
-                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                <a>{object.title}</a>
+                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                <a>{object.object_title}</a>
                             </Link>
                         </h3>
                     </article>

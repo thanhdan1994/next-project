@@ -15,7 +15,7 @@ app
     const server = express();
     server.use(cookieParser());
 
-    server.get('/post/:id', (req, res) => {
+    server.get('/post/(:id).html', (req, res) => {
       if (req.headers.host === 'my-app.com') {
         app.setAssetPrefix('http://cdn.com/myapp');
       } else {
@@ -26,16 +26,40 @@ app
       app.render(req, res, actualPage, queryParams);
     });
 
-    // server.get('/detail', (req, res) => {
-    //   client.select(3, function() {
-    //     client.hgetall('zyz_kobdt_11', function(err, result) {
-    //       let data = result;
-    //       let resources = data.resources;
-    //       let objRe = JSON.parse(resources);
-    //       console.log(typeof(objRe.resource_content)); // {"key":"value","second key":"second value"}
-    //     });
-    //   })
-    // })
+    server.get('/chu-de/:title/(:id).html', (req, res) => {
+      const actualPage = '/tag';
+      const queryParams = { id: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    })
+
+    server.get('/ttc/:cat/:catParent/:dateObject/:title/(:id).html', (req, res) => {
+      const { cat, catParent, dateObject, title } = req.params;
+      const slug = '/ttc/'+cat+'/'+catParent+'/'+dateObject+'/'+ title;
+      if (req.headers.host === 'my-app.com') {
+        app.setAssetPrefix('http://cdn.com/myapp');
+      } else {
+        app.setAssetPrefix('');
+      }
+      const actualPage = '/post';
+      const queryParams = { id: req.params.id, slug};
+      app.render(req, res, actualPage, queryParams);
+    })
+
+    server.get('/ttc/biem-hoa/:dateObject/:title/(:id).html', (req, res) => {
+      const { dateObject, title } = req.params;
+      // const slug = '/ttc/biem-hoa' + '/' + dateObject + '/' + title;
+      const actualPage = '/post';
+      const queryParams = { id: req.params.id};
+      app.render(req, res, actualPage, queryParams);
+    })
+
+    server.get('/ttc/video/:dateObject/:title/(:id).html', (req, res) => {
+      const { dateObject, title } = req.params;
+      // const slug = '/ttc/video' + '/' + dateObject + '/' + title;
+      const actualPage = '/video-detail';
+      const queryParams = { id: req.params.id};
+      app.render(req, res, actualPage, queryParams);
+    })
 
     server.get('*', (req, res) => {
       return handle(req, res);

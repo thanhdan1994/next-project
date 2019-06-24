@@ -1,0 +1,1 @@
+export const ORIGIN_ASSETS = 'https://sstaticcuoi-tuoitre.cdn.vccloud.vn';

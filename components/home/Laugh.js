@@ -1,49 +1,85 @@
 import Link from 'next/link'
-const Laugh = props => (
-    <div className="block-laugh">
-        <h2 className="title">
-            <i className="icon icon-laugh" />
-            <div className="inner-title">
-                <h2><a href="#">Đời cười</a></h2>
-                <ul className="list-cat">
-                    <li><a href="#">Góc nhìn</a></li>
-                    <li><a href="#">Bình luận</a></li>
-                    <li><a href="#">Miễn bình luậnz</a></li>
-                </ul>
-            </div>
-        </h2>
-        <div className="outer scrollToTwo">
-            <section className="content">
-                <div className="list-news">
-                    <article className="art-lastest art-b">
-                        <a href="#"><img src="/static/img/photo/8-min.jpg" /><i className="icon icon-video" /></a>
-                        <div className="des">
-                            <h4 className="hasComment"><a href="#">Hai Phượng giải nhiệt cơn khát phim hành động Việt</a></h4>
-                            <a className="cat" href="#">Thời sự</a>
-                            <article className="art-s">
-                                <h4><a href="#">Sương sớm, À ố Show, Teh Dar diễn ở phố cổ Hội An</a></h4>
-                            </article>
-                        </div>
-                    </article>
-                    {props.lists.map(object => (
-                        <article className="art-lastest" key={object.object_id}>
-                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                <a><img src={object.thumb_link} /><i className="icon icon-video" /></a>
-                            </Link>
-                            <div className="des">
-                                <h4 className="hasComment"><a href="#">{object.title}</a></h4>
-                            </div>
-                        </article>
-                    ))}
-                </div>
-            </section>
-            <aside className="sidebar">
-                <div className="block-bar block-qc ui sticky two">
-                    <a href="#"><img src="/static/img/banner-300x600.jpg" /></a>
-                </div>
-            </aside>
-        </div>
-    </div>
+import React, { Component } from 'react';
+import { echoThumbnail } from '../../constant/Helpers';
 
-)
-export default Laugh
+export default class Laugh extends Component {
+    render() {
+        let { list_tag, list_prior, list_newest } = this.props.data;
+        let { related_objects } = list_prior[0];
+        return (
+            <div className="block-laugh">
+                <h2 className="title">
+                    <i className="icon icon-laugh" />
+                    <div className="inner-title">
+                        <h2>
+                            <Link href="/doi-cuoi">
+                                <a>Đời cười</a>
+                            </Link>
+                        </h2>
+                        <ul className="list-cat">
+                            {list_tag.map((tag, index) => (
+                                <li key={index}>
+                                    <Link href={tag.tag_link}>
+                                        <a>{tag.tag_name}</a>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </h2>
+                <div className="outer scrollToTwo">
+                    <section className="content">
+                        <div className="list-news">
+                            <article className="art-lastest art-b">
+                                <Link as={`/post/${list_prior[0].id}`} href={`/post?id=${list_prior[0].id}`}>
+                                    <a><img src={echoThumbnail('s300', list_prior[0].object_thumbnail)} /></a>
+                                </Link>
+                                <div className="des">
+                                    <h4 className="hasComment">
+                                        <Link as={`/post/${list_prior[0].id}`} href={`/post?id=${list_prior[0].id}`}>
+                                            <a>{list_prior[0].object_title}</a>
+                                        </Link>
+                                    </h4>
+                                    <Link href="/doi-cuoi">
+                                        <a className="cat">Đời cười</a>
+                                    </Link>
+                                    {
+                                        related_objects[0]
+                                            ? <article className="art-s">
+                                                <h4>
+                                                    <Link as={`/${related_objects[0].object_slug}/${related_objects[0].id}.html`} href={`/post?id=${related_objects[0].id}`}>
+                                                        <a>{related_objects[0].object_title}</a>
+                                                    </Link>
+                                                </h4>
+                                            </article>
+                                            : ''
+                                    }
+
+                                </div>
+                            </article>
+                            {list_newest.map(object => (
+                                <article className="art-lastest" key={object.id}>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                    </Link>
+                                    <div className="des">
+                                        <h4 className="hasComment">
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a>{object.object_title}</a>
+                                            </Link>
+                                        </h4>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+                    <aside className="sidebar">
+                        <div className="block-bar block-qc ui sticky two">
+                            <a href="#"><img src="/static/img/banner-300x600.jpg" /></a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        )
+    }
+}

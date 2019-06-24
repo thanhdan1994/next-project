@@ -25,5 +25,8 @@
     "react-slick": "^0.24.0",
     "redis": "^2.8.0",
     "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.19.1"
   }
 }

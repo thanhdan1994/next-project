@@ -52,6 +52,7 @@ export default class BiemHoa extends Component {
                     <script src="/static/js/lib.min.js"></script>
                 </Head>
                 <div className="main">
+                    <h1>this page is biem hoa</h1>
                     <div className="container">
                         <h2 className="title">
                             <i className="icon icon-laugh" />

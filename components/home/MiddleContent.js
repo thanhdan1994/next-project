@@ -1,12 +1,13 @@
-import Link from 'next/link'
-import React, { Component } from 'react'
+import Link from 'next/link';
+import React, { Component } from 'react';
+import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
 
 export default class MiddleContent extends Component {
     componentDidMount() {
         $('.slick-thumb').slick({
             dots: false,
             autoplay: true,
-             autoplaySpeed: 2000,
+            autoplaySpeed: 2000,
             infinite: true
         });
     }
@@ -15,60 +16,56 @@ export default class MiddleContent extends Component {
             <div className="outer outer-mid  scrollToOne">
                 <section className="content">
                     <div className="list-news">
-                        {this.props.lists.listSection.map((object, index) => {
-                            if (index === 0) {
-                                return <article className="art-style" key={index}>
-                                    <div className="slick-thumb">
-                                        <div key={index}>
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a className="thumb"><img src={object.thumb_link} /></a>
+                        {this.props.lists.listSection.listPrior.map((object, index) => {
+                            let resources = object.resources[0][0].resource_content;
+                            return <article className="art-style" key={index}>
+                                <div className="slick-thumb">
+                                    {resources.map((item, index) => {
+                                        let resource_url = item.resource_url;
+                                        if (resource_url.search('-doc-')) {
+                                            return <div key={index}>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a className="thumb"><img src={echoThumbnail('r', item.resource_url)} /></a>
                                             </Link>
                                         </div>
-                                        <div>
-                                            <a className="thumb"><img src="/static/img/photo/8-min.jpg"/></a>
-                                        </div>
-                                        <div>
-                                            <a className="thumb"><img src="/static/img/img-default.jpg"/></a>
-                                        </div>
-                                        <div>
-                                            <a className="thumb"><img src="/static/img/photo/8-min.jpg"/></a>
-                                        </div>
-
-                                    </div>
-                                    <div className="des">
-                                        <h3>
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a title={object.title}>{object.title}</a>
-                                            </Link>
-                                        </h3>
-                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                            <a className="btn-viewmore" title={object.title}>Xem thêm <i className="icon icon-viewmore" /></a>
+                                        }
+                                    })}
+                                </div>
+                                <div className="des">
+                                    <h3>
+                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                            <a title={object.object_title}>{object.object_title}</a>
                                         </Link>
-                                    </div>
-                                </article>
-                            }
-                            if (index === 1) {
+                                    </h3>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                        <a className="btn-viewmore" title={object.object_title}>Xem thêm <i className="icon icon-viewmore" /></a>
+                                    </Link>
+                                </div>
+                            </article>
+                        })}
+                        {this.props.lists.listSection.listNewest.map((object, index) => {
+                            if (index === 0) {
                                 return <article className="art-lastest art-b" key={index}>
-                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                        <a title={object.object_title}><img src={echoThumbnail('s300', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4 className="hasComment">
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a title={object.title}>{object.title}</a>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a title={object.object_title}>{object.object_title}</a>
                                             </Link>
                                         </h4>
                                     </div>
                                 </article>
                             } else {
                                 return <article className="art-lastest" key={index}>
-                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                        <a title={object.object_title}><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a title={object.title}>{object.title}</a>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a title={object.object_title}>{object.object_title}</a>
                                             </Link>
                                         </h4>
                                     </div>
@@ -84,24 +81,24 @@ export default class MiddleContent extends Component {
                             {this.props.lists.listAside.map((object, index) => {
                                 if (index === 0) {
                                     return <article className="art-bar-b" key={index}>
-                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                            <a><img src={object.thumb_link} /></a>
+                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
+                                            <a><img src={echoThumbnail('s300', object.object_thumbnail)} /></a>
                                         </Link>
                                         <h4>
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a>{object.title}</a>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a>{object.object_title}</a>
                                             </Link>
                                         </h4>
                                     </article>
                                 }
                                 return <article className="art-bar-s art-hori" key={index}>
-                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a><img src={object.thumb_link} /></a>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
-                                            <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a title="">{object.title}</a>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                                <a title="">{object.object_title}</a>
                                             </Link>
                                         </h4>
                                     </div>
@@ -114,97 +111,3 @@ export default class MiddleContent extends Component {
         )
     }
 }
-// const MiddleContent = props => (
-//     <div className="outer outer-mid  scrollToOne">
-//         <section className="content">
-//             <div className="list-news">
-//                 {props.lists.listSection.map((object, index) => {
-//                     if (index === 0) {
-//                         return <article className="art-style" key={index}>
-//                             <div className="slick-thumb">
-//                                 <div key={index}>
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a className="thumb"><img src={object.thumb_link}/></a>
-//                                     </Link>
-//                                 </div>
-//                             </div>
-//                             <div className="des">
-//                                 <h3>
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a title={object.title}>{object.title}</a>
-//                                     </Link>
-//                                 </h3>
-//                                 <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                     <a className="btn-viewmore" title={object.title}>Xem thêm <i className="icon icon-viewmore" /></a>
-//                                 </Link>
-//                             </div>
-//                         </article>
-//                     }
-//                     if (index === 1) {
-//                         return <article className="art-lastest art-b" key={index}>
-//                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
-//                             </Link>
-//                             <div className="des">
-//                                 <h4 className="hasComment">
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a title={object.title}>{object.title}</a>
-//                                     </Link>
-//                                 </h4>
-//                             </div>
-//                         </article>
-//                     } else {
-//                         return <article className="art-lastest" key={index}>
-//                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a title={object.title}><img src={object.thumb_link}/><i className="icon icon-video" /></a>
-//                             </Link>
-//                             <div className="des">
-//                                 <h4>
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a title={object.title}>{object.title}</a>
-//                                     </Link>
-//                                 </h4>
-//                             </div>
-//                         </article>
-//                     }
-//                 })}
-//             </div>
-//         </section>
-//         <aside className="sidebar">
-//             <div className="block-bar ui sticky one">
-//                 <h3 className="title-note">Đáng chú ý</h3>
-//                 <div className="inner-gray">
-//                     {props.lists.listAside.map((object, index) => {
-//                         if (index === 0) {
-//                             return <article className="art-bar-b" key={index}>
-//                                 <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                     <a><img src={object.thumb_link}/></a>
-//                                 </Link>
-//                                 <h4>
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a>{object.title}</a>
-//                                     </Link>
-//                                 </h4>
-//                             </article>
-//                         }
-//                         return <article className="art-bar-s art-hori" key={index}>
-//                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a><img src={object.thumb_link}/></a>
-//                             </Link>
-//                             <div className="des">
-//                                 <h4>
-//                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a title="">{object.title}</a>
-//                                     </Link>
-//                                 </h4>
-//                             </div>
-//                         </article>
-//                     })}
-//                 </div>
-//             </div>
-//         </aside>
-//     </div >
-
-// )
-
-// export default MiddleContent

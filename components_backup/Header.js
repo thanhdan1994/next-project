@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 function Header() {
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-  const [isLogin, setIsLogin] = (cookies.infoUser) ? useState(true) : useState(false);
+  const [isLogin , setIsLogin] = (cookies.infoUser) ? useState(true) : useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(false);
@@ -14,15 +14,14 @@ function Header() {
     e.preventDefault()
     if (email === 'thanhdan26081994@gmail.com' && password === '123456@') {
       setIsLogin(true);
-      setCookie('infoUser', JSON.stringify({ email: 'thanhdan26081994@gmail.com', age: '25' }))
+      setCookie('infoUser', JSON.stringify({email: 'thanhdan26081994@gmail.com', age: '25'}))
       alert("đăng nhập thành công!");
       $('#loginModal').modal('hide')
     }
     setMessage(true)
   }
 
-  function handleLogout(e) {
-    e.preventDefault()
+  function handleLogout() {
     setIsLogin(false);
     removeCookie('infoUser')
   }
@@ -37,32 +36,28 @@ function Header() {
             <li className="link-login pull-right">
               {/* <i className="icon-user" /> */}
               {(isLogin) ? <div className="dropdown dropdown-user">
-                <Link href="javascript:void(0)">
-                  <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img className="img-login" src="https://media.pixcove.com/N/8/8/Man-Gentleman-Silhouette-Gray-Free-Illustrations-F-0424.jpg" />
-                    trần thanh dân
+                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <img className="img-login" src="https://media.pixcove.com/N/8/8/Man-Gentleman-Silhouette-Gray-Free-Illustrations-F-0424.jpg" />
+                              trần thanh dân
                             </a>
-                </Link>
-                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end">
-                  <a className="dropdown-item">Bình luận của bạn</a>
-                  <a className="dropdown-item">Bài đã duyệt</a>
-                  <a className="dropdown-item">Cài đặt tài khoản</a>
-                  <Link href="javascript:void(0)">
-                    <a className="dropdown-item" onClick={handleLogout}>
-                      <strong>Đăng xuất</strong>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-                : <span>
-                  <Link href="#">
-                    <a>Đăng ký</a>
-                  </Link>
-                  |
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end">
+                              <a className="dropdown-item">Bình luận của bạn</a>
+                              <a className="dropdown-item">Bài đã duyệt</a>
+                              <a className="dropdown-item">Cài đặt tài khoản</a>
+                              <a className="dropdown-item">
+                                <strong onClick={handleLogout}>Đăng xuất</strong>
+                              </a>
+                            </div>
+                          </div>
+                    : <span>
                     <Link href="#">
-                    <a data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
-                  </Link>
-                </span>
+                      <a>Đăng ký</a>
+                    </Link>
+                    |
+                    <Link href="#">
+                      <a data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
+                    </Link>
+                  </span>
               }
             </li>
             <li className="pull-right"><a title="Hot Line" href="tel:0918033133"><i aria-hidden="true" className="icon icon-call" />Hotline: 0918.033.133</a></li>
@@ -111,11 +106,11 @@ function Header() {
               <form className="frm-general">
                 <div className="form-group">
                   <label>Email</label>
-                  <input className="form-control" value={email} type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+                  <input className="form-control" value={email} type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="form-group">
                   <label>Mật khẩu</label>
-                  <input className="form-control" value={password} type="password" name="pass" onChange={(e) => setPassword(e.target.value)} />
+                  <input className="form-control" value={password} type="password" name="pass" onChange={(e) => setPassword(e.target.value)}/>
                   {message ? <p className="warning warning-login-password">Thông tin đăng nhập không đúng</p> : ''}
                 </div>
                 <div className="form-group">
