@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import React, { Component } from 'react'
+import { PureComponent } from 'react'
 
-class SuggestBar extends Component {
+class SuggestBar extends PureComponent {
     render() {
         const { lists } = this.props;
         if (lists) {

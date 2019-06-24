@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import React, { Component } from 'react';
+import { PureComponent } from 'react';
 import { echoThumbnail, buildLinkObject } from './../constant/Helpers';
 
-export default class FeaturedNews extends Component {
+export default class FeaturedNews extends PureComponent {
     componentDidMount() {
         this.$el = $(this.el);
         this.$el.slick({

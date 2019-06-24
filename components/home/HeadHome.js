@@ -1,8 +1,8 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import Head from 'next/head'
 import JsonLd from '../JsonLd';
 
-export default class HeadHome extends Component {
+export default class HeadHome extends PureComponent {
     render() {
         return (
             <Head>

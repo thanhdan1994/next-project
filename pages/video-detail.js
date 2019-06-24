@@ -3,7 +3,6 @@ import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import Comment from '../components/comment/Comment'
-import Footer from '../components/Footer.js';
 
 class VideoDetail extends Component {
     static async getInitialProps() {
@@ -124,8 +123,6 @@ class VideoDetail extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
-                <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
             </Layout>
         )
     }

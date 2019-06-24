@@ -3,7 +3,6 @@ import fetch from 'isomorphic-unfetch';
 import SuggestBar from '../components/home/SuggestBar.js';
 import React, { Component } from 'react';
 import HeadHome from '../components/home/HeadHome'
-import Footer from '../components/Footer.js';
 import FeaturedNews from '../components/FeaturedNews.js';
 import MiddleContent from '../components/home/MiddleContent.js';
 import Video from '../components/home/Video.js';
@@ -117,11 +116,6 @@ export default class Index extends Component {
             <Last dataLeft={this.props.dataLastBlock.listLeft} dataRight={this.props.dataLastBlock.listRight} />
           </div>
         </div>
-        <Footer />
-        <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
-        <style jsx>{`
-        
-        `}</style>
       </Layout>
     )
   }

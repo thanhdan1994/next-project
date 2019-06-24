@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import React, { Component } from 'react';
+import { PureComponent } from 'react';
 import { echoThumbnail } from '../../constant/Helpers';
 
-export default class Laugh extends Component {
+export default class Laugh extends PureComponent {
     render() {
         let { list_tag, list_prior, list_newest } = this.props.data;
         let { related_objects } = list_prior[0];

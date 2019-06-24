@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
 
-export default class MiddleContent extends Component {
+export default class MiddleContent extends PureComponent {
     componentDidMount() {
         $('.slick-thumb').slick({
             dots: false,
@@ -82,22 +82,25 @@ export default class MiddleContent extends Component {
                                 if (index === 0) {
                                     return <article className="art-bar-b" key={index}>
                                         <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                            <a><img src={echoThumbnail('s300', object.object_thumbnail)} /></a>
+                                            <a>
+                                                <img src={echoThumbnail('s300', object.object_thumbnail)} />
+                                                <i className="icon icon-video-b"></i>
+                                            </a>
                                         </Link>
                                         <h4>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
                                                 <a>{object.object_title}</a>
                                             </Link>
                                         </h4>
                                     </article>
                                 }
                                 return <article className="art-bar-s art-hori" key={index}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
                                         <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
                                                 <a title="">{object.object_title}</a>
                                             </Link>
                                         </h4>

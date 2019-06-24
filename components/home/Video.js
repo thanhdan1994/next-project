@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { echoThumbnail } from './../../constant/Helpers';
-import React, { Component } from 'react';
-export default class Video extends Component {
+import { PureComponent } from 'react';
+export default class Video extends PureComponent {
     render() {
         let itemHighlight = this.props.lists.list_primary;
         let tagsHighlight = itemHighlight.tags_term;

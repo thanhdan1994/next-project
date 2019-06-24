@@ -124,8 +124,6 @@ class Video extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
-                <a href="javascript:void(0)" title="top" className="btn-top"><i className="fa fa-chevron-up" /></a>
             </Layout>
         )
     }
