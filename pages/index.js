@@ -105,8 +105,6 @@ export default class Index extends Component {
             <SuggestBar lists={this.props.dataSuggestBar}/>
             <FeaturedNews lists={this.props.dataFeatured} />
             <span className="line-border"></span>
-            <MiddleContent lists={this.props.dataMiddle} />
-            <span className="line-border"></span>
             <Video lists={this.props.dataVideo} />
             <span className="line-border"></span>
             <Laugh data={this.props.dataLaugh} />
@@ -114,6 +112,8 @@ export default class Index extends Component {
             <Entertainment data={this.props.dataEntertainment} />
             <span className="line-border"></span>
             <Last dataLeft={this.props.dataLastBlock.listLeft} dataRight={this.props.dataLastBlock.listRight} />
+            <span className="line-border"></span>
+            <MiddleContent lists={this.props.dataMiddle} />
           </div>
         </div>
       </Layout>

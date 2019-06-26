@@ -27,7 +27,7 @@ export default class Entertainment extends PureComponent {
                     <article className="art-enter art-b">
                         <Link as={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`} href={buildLinkObject(list_prior[0].object_slug, list_prior[0].id)}>
                             <a className="thumbs">
-                                <img src={echoThumbnail('s475', list_prior[0].object_thumbnail)} />
+                                <img className="lazy" data-src={echoThumbnail('s475', list_prior[0].object_thumbnail)} />
                             </a>
                         </Link>
                         <div className="des">
@@ -52,7 +52,7 @@ export default class Entertainment extends PureComponent {
                         </div>
                     </article>
                     <div className="block-bar block-qc">
-                        <a href="#"><img src="/static/img/banner-300x250.jpg" /></a>
+                        <a href="#"><img className="lazy" data-src="/static/img/banner-300x250.jpg" /></a>
                     </div>
                 </div>
                 <div className="list-enter">
@@ -61,7 +61,7 @@ export default class Entertainment extends PureComponent {
                             <div className="col" key={object.id}>
                                 <article className="art-enter-s">
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                        <a><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <h3>
                                         <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>

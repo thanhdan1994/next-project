@@ -23,15 +23,15 @@ export default class FeaturedNews extends PureComponent {
                         {list_order_1.map((object, index) => {
                             return (
                                 <article className="art-top-1" key={index}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                        <a className="thumb" title={object.object_title}>
-                                            <img src={echoThumbnail('s475', object.object_thumbnail)} alt={object.object_title} />
-                                        </a>
-                                    </Link>
+                                    {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                    <a href={`/${object.object_slug}/${object.id}.html`} className="thumb" title={object.object_title}>
+                                        <img src={echoThumbnail('s475', object.object_thumbnail)} alt={object.object_title} />
+                                    </a>
+                                    {/* </Link> */}
                                     <h1 className="hasComment">
-                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                            <a title={object.object_title}>{object.object_title}</a>
-                                        </Link>
+                                        {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                        <a href={`/${object.object_slug}/${object.id}.html`} title={object.object_title}>{object.object_title}</a>
+                                        {/* </Link> */}
                                     </h1>
                                     <p>{object.object_excerpt}</p>
                                 </article>
@@ -39,15 +39,15 @@ export default class FeaturedNews extends PureComponent {
                         })}
                         {list_order_2.map((object, index) => {
                             return <article className="art-top-2" key={index}>
-                                <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                    <a className="thumb" title={object.object_title}>
-                                        <img src={(echoThumbnail('s1852', object.object_thumbnail)).replace('-ngang-', '-doc-')} alt={object.object_title} />
-                                    </a>
-                                </Link>
+                                {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                <a href={`/${object.object_slug}/${object.id}.html`} className="thumb" title={object.object_title}>
+                                    <img src={(echoThumbnail('s1852', object.object_thumbnail)).replace('-ngang-', '-doc-')} alt={object.object_title} />
+                                </a>
+                                {/* </Link> */}
                                 <h2 className="hasComment">
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                        <a title={object.object_title}>{object.object_title}</a>
-                                    </Link>
+                                    {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                    <a href={`/${object.object_slug}/${object.id}.html`} title={object.object_title}>{object.object_title}</a>
+                                    {/* </Link> */}
                                 </h2>
                             </article>
                         })}
@@ -57,13 +57,13 @@ export default class FeaturedNews extends PureComponent {
                             {list_order_3.map((object, index) => {
                                 return <div className="slide_item" key={index}>
                                     <article className="art-slider">
-                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                            <a className="thumb"><img src={echoThumbnail('s226', object.object_thumbnail)} alt={object.object_title} /></a>
-                                        </Link>
+                                        {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                        <a href={`/${object.object_slug}/${object.id}.html`} className="thumb"><img src={echoThumbnail('s226', object.object_thumbnail)} alt={object.object_title} /></a>
+                                        {/* </Link> */}
                                         <h3 className="hasComment">
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                                <a title={object.object_title}>{object.object_title}</a>
-                                            </Link>
+                                            {/* <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}> */}
+                                            <a href={`/${object.object_slug}/${object.id}.html`} title={object.object_title}>{object.object_title}</a>
+                                            {/* </Link> */}
                                         </h3>
                                     </article>
                                 </div>

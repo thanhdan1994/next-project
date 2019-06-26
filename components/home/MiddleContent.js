@@ -25,7 +25,7 @@ export default class MiddleContent extends PureComponent {
                                         if (resource_url.search('-doc-')) {
                                             return <div key={index}>
                                             <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                                <a className="thumb"><img src={echoThumbnail('r', item.resource_url)} /></a>
+                                                <a className="thumb"><img className="lazy" data-src={echoThumbnail('r', item.resource_url)} /></a>
                                             </Link>
                                         </div>
                                         }
@@ -47,7 +47,7 @@ export default class MiddleContent extends PureComponent {
                             if (index === 0) {
                                 return <article className="art-lastest art-b" key={index}>
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a title={object.object_title}><img src={echoThumbnail('s300', object.object_thumbnail)} /></a>
+                                        <a title={object.object_title}><img className="lazy" data-src={echoThumbnail('s300', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4 className="hasComment">
@@ -60,7 +60,7 @@ export default class MiddleContent extends PureComponent {
                             } else {
                                 return <article className="art-lastest" key={index}>
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a title={object.object_title}><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                        <a title={object.object_title}><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
@@ -83,7 +83,7 @@ export default class MiddleContent extends PureComponent {
                                     return <article className="art-bar-b" key={index}>
                                         <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
                                             <a>
-                                                <img src={echoThumbnail('s300', object.object_thumbnail)} />
+                                                <img className="lazy" data-src={echoThumbnail('s300', object.object_thumbnail)} />
                                                 <i className="icon icon-video-b"></i>
                                             </a>
                                         </Link>
@@ -96,7 +96,7 @@ export default class MiddleContent extends PureComponent {
                                 }
                                 return <article className="art-bar-s art-hori" key={index}>
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                        <a><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>

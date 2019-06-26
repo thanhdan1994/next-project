@@ -32,7 +32,7 @@ export default class Laugh extends PureComponent {
                         <div className="list-news">
                             <article className="art-lastest art-b">
                                 <Link as={`/post/${list_prior[0].id}`} href={`/post?id=${list_prior[0].id}`}>
-                                    <a><img src={echoThumbnail('s300', list_prior[0].object_thumbnail)} /></a>
+                                    <a><img className="lazy" data-src={echoThumbnail('s300', list_prior[0].object_thumbnail)} /></a>
                                 </Link>
                                 <div className="des">
                                     <h4 className="hasComment">
@@ -60,7 +60,7 @@ export default class Laugh extends PureComponent {
                             {list_newest.map(object => (
                                 <article className="art-lastest" key={object.id}>
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                        <a><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4 className="hasComment">
@@ -75,7 +75,7 @@ export default class Laugh extends PureComponent {
                     </section>
                     <aside className="sidebar">
                         <div className="block-bar block-qc ui sticky two">
-                            <a href="#"><img src="/static/img/banner-300x600.jpg" /></a>
+                            <a href="#"><img className="lazy" data-src="/static/img/banner-300x600.jpg" /></a>
                         </div>
                     </aside>
                 </div>

@@ -127,7 +127,7 @@ export default class Video extends PureComponent {
                         <div className="col-sm-3" key={object.id}>
                             <article className="art-video-top playing">
                                 <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                    <a className="thumb"><img src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                    <a className="thumb"><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                 </Link>
                                 <h3>
                                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
