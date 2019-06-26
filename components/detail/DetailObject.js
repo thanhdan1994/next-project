@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Comment from '../comment/Comment'
-import VideoJsPlayer from '../VideoJsPlayer';
 function createMarkup(content) {
     return { __html: content };
 }
@@ -42,10 +41,6 @@ const DetailObject = props => (
                     <article className="art-body fck scrollToTwo">
                         <p className="summary">{props.detail.description}</p>
                         <div dangerouslySetInnerHTML={createMarkup(props.detail.object_content)} />]
-                        {/* <VideoJsPlayer 
-                            idVideo="1942"
-                            src="https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4"
-                            poster="https://sstaticcuoi.tuoitre.vn/ttc/i/s1280/2019/05/21/untitled-77-1558435104.jpg"/> */}
                         {props.detail.related_article.map(object => (
                             <div className="block-related" key={object.object_id}>
                                 <ul>

@@ -1,7 +1,7 @@
 {
     "version": 2,
     "alias": "nextjs-project",
-    "name": "nextjs2-project-temp",
+    "name": "nextjs2-lazy-api",
     "builds": [
       { "src": "package.json", "use": "@now/next" },
       { "src": "/static/*", "use": "@now/static" }

@@ -53,7 +53,7 @@ const Video = props => (
                 </ul>
                 <div className="s-comment">
                     <div className="inner">
-                        <a className="thumbs" href="#"><img src="/static/img/user.jpg" alt="" /></a>
+                        <a className="thumbs" href="#"><img className="lazyload" data-src="/static/img/user.jpg" alt="" /></a>
                         <div className="des">
                             <div className="cmt-content"><span><strong>Văn Quân</strong></span> The typhoon is forecast to weaken into a tropical depression depression ...
               <div className="tool-like">
@@ -70,7 +70,7 @@ const Video = props => (
                 <div className="col-sm-3" key={object.object_id}>
                     <article className="art-video-top playing">
                         <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                            <a className="thumb"><img src={object.thumb_link} /></a>
+                            <a className="thumb"><img className="lazyload" data-src={object.thumb_link} /></a>
                         </Link>
                         <h3>
                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>

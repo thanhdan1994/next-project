@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { echoThumbnail } from './../../constant/Helpers';
+import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
 import { PureComponent } from 'react';
 export default class Video extends PureComponent {
     render() {
@@ -66,7 +66,7 @@ export default class Video extends PureComponent {
                     </div>
                     <div className="des">
                         <h1>
-                            <Link as={`/${object_slug}/${id}.html`} href={`/video-detail?id=${id}`}>
+                            <Link as={`/${object_slug}/${id}.html`} href={buildLinkObject(object_slug, id)}>
                                 <a>{object_title}</a>
                             </Link>
                         </h1>
@@ -108,29 +108,17 @@ export default class Video extends PureComponent {
                                 </button>
                             </li>
                         </ul>
-                        {/* <div className="s-comment">
-                        <div className="inner">
-                            <a className="thumbs" href="#"><img src="/static/img/user.jpg" alt="" /></a>
-                            <div className="des">
-                                <div className="cmt-content"><span><strong>Văn Quân</strong></span> The typhoon is forecast to weaken into a tropical depression depression ...
-                  <div className="tool-like">
-                                        <span className="like"><i className="fa fa-heart-o" aria-hidden="true" /> 245</span> <span className="reply"> Trả lời</span> <span className="count">Xem tất cả bình luận</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                     </div>
                 </article>
                 <div className="row">
                     {list_newest.map(object => (
                         <div className="col-sm-3" key={object.id}>
                             <article className="art-video-top playing">
-                                <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                    <a className="thumb"><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
+                                    <a className="thumb"><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                 </Link>
                                 <h3>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
+                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
                                         <a>{object.object_title}</a>
                                     </Link>
                                 </h3>

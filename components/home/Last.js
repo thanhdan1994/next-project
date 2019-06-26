@@ -27,7 +27,7 @@ const Last = props => (
                     <div className="col-6" key={object.id}>
                     <article className="art art-young" key={object.id}>
                     <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                        <a><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                        <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                     </Link>
                         <h3>
                             <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
@@ -64,7 +64,7 @@ const Last = props => (
                     <div className="col-6" key={object.id}>
                     <article className="art art-young">
                         <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                            <a><img className="lazy" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                            <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                         </Link>
                         <h3>
                             <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>

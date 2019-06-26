@@ -21,17 +21,17 @@ export default class MiddleContent extends Component {
                                     <div className="slick-thumb">
                                         <div key={index}>
                                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                <a className="thumb"><img src={object.thumb_link} /></a>
+                                                <a className="thumb"><img className="lazyload" data-src={object.thumb_link} /></a>
                                             </Link>
                                         </div>
                                         <div>
-                                            <a className="thumb"><img src="/static/img/photo/8-min.jpg"/></a>
+                                            <a className="thumb"><img className="lazyload" data-src="/static/img/photo/8-min.jpg"/></a>
                                         </div>
                                         <div>
-                                            <a className="thumb"><img src="/static/img/img-default.jpg"/></a>
+                                            <a className="thumb"><img className="lazyload" data-src="/static/img/img-default.jpg"/></a>
                                         </div>
                                         <div>
-                                            <a className="thumb"><img src="/static/img/photo/8-min.jpg"/></a>
+                                            <a className="thumb"><img className="lazyload" data-src="/static/img/photo/8-min.jpg"/></a>
                                         </div>
 
                                     </div>
@@ -50,7 +50,7 @@ export default class MiddleContent extends Component {
                             if (index === 1) {
                                 return <article className="art-lastest art-b" key={index}>
                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                                        <a title={object.title}><img className="lazyload" data-src={object.thumb_link} /><i className="icon icon-video" /></a>
                                     </Link>
                                     <div className="des">
                                         <h4 className="hasComment">
@@ -63,7 +63,7 @@ export default class MiddleContent extends Component {
                             } else {
                                 return <article className="art-lastest" key={index}>
                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                                        <a title={object.title}><img className="lazyload" data-src={object.thumb_link} /><i className="icon icon-video" /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
@@ -85,7 +85,7 @@ export default class MiddleContent extends Component {
                                 if (index === 0) {
                                     return <article className="art-bar-b" key={index}>
                                         <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                            <a><img src={object.thumb_link} /></a>
+                                            <a><img className="lazyload" data-src={object.thumb_link} /></a>
                                         </Link>
                                         <h4>
                                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
@@ -96,7 +96,7 @@ export default class MiddleContent extends Component {
                                 }
                                 return <article className="art-bar-s art-hori" key={index}>
                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a><img src={object.thumb_link} /></a>
+                                        <a><img className="lazyload" data-src={object.thumb_link} /></a>
                                     </Link>
                                     <div className="des">
                                         <h4>
@@ -124,7 +124,7 @@ export default class MiddleContent extends Component {
 //                             <div className="slick-thumb">
 //                                 <div key={index}>
 //                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                         <a className="thumb"><img src={object.thumb_link}/></a>
+//                                         <a className="thumb"><img className="lazyload" data-src={object.thumb_link}/></a>
 //                                     </Link>
 //                                 </div>
 //                             </div>
@@ -143,7 +143,7 @@ export default class MiddleContent extends Component {
 //                     if (index === 1) {
 //                         return <article className="art-lastest art-b" key={index}>
 //                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a title={object.title}><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+//                                 <a title={object.title}><img className="lazyload" data-src={object.thumb_link} /><i className="icon icon-video" /></a>
 //                             </Link>
 //                             <div className="des">
 //                                 <h4 className="hasComment">
@@ -156,7 +156,7 @@ export default class MiddleContent extends Component {
 //                     } else {
 //                         return <article className="art-lastest" key={index}>
 //                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a title={object.title}><img src={object.thumb_link}/><i className="icon icon-video" /></a>
+//                                 <a title={object.title}><img className="lazyload" data-src={object.thumb_link}/><i className="icon icon-video" /></a>
 //                             </Link>
 //                             <div className="des">
 //                                 <h4>
@@ -178,7 +178,7 @@ export default class MiddleContent extends Component {
 //                         if (index === 0) {
 //                             return <article className="art-bar-b" key={index}>
 //                                 <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                     <a><img src={object.thumb_link}/></a>
+//                                     <a><img className="lazyload" data-src={object.thumb_link}/></a>
 //                                 </Link>
 //                                 <h4>
 //                                     <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
@@ -189,7 +189,7 @@ export default class MiddleContent extends Component {
 //                         }
 //                         return <article className="art-bar-s art-hori" key={index}>
 //                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-//                                 <a><img src={object.thumb_link}/></a>
+//                                 <a><img className="lazyload" data-src={object.thumb_link}/></a>
 //                             </Link>
 //                             <div className="des">
 //                                 <h4>

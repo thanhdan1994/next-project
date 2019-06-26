@@ -17,7 +17,7 @@ const Last = props => (
                 {props.younger.map(object => (
                     <div className="col-6" key={object.object_id}>
                     <article className="art art-young" key={object.object_id}>
-                        <a href="#"><img src={object.thumb_link} /></a>
+                        <a href="#"><img className="lazyload" data-src={object.thumb_link} /></a>
                         <h3><a href="#">{object.title}</a></h3>
                     </article>
                 </div>
@@ -42,7 +42,7 @@ const Last = props => (
                     <div className="col-6" key={object.object_id}>
                     <article className="art art-young">
                         <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                            <a><img src={object.thumb_link} /></a>
+                            <a><img className="lazyload" data-src={object.thumb_link} /></a>
                         </Link>
                         <h3>
                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>

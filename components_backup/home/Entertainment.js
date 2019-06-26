@@ -14,7 +14,7 @@ const Entertainment = props => (
         </h2>
         <div className="outer">
             <article className="art-enter art-b">
-                <a className="thumbs" href="#"><img src="/static/img/photo/8-min.jpg" /><i className="icon icon-video" /></a>
+                <a className="thumbs" href="#"><img className="lazyload" data-src="/static/img/photo/8-min.jpg" /><i className="icon icon-video" /></a>
                 <div className="des">
                     <h3 className="hasComment"><a href="#">Hai Phượng giải nhiệt cơn khát phim hành động Việt</a> <span className="outer-icon"><span className="number">43</span><i className="icon icon-comment" /></span></h3>
                     <a className="link-cat">Nghe đồn là</a>
@@ -25,7 +25,7 @@ const Entertainment = props => (
                 </div>
             </article>
             <div className="block-bar block-qc">
-                <a href="#"><img src="/static/img/banner-300x250.jpg" /></a>
+                <a href="#"><img className="lazyload" data-src="/static/img/banner-300x250.jpg" /></a>
             </div>
         </div>
         <div className="list-enter">
@@ -34,7 +34,7 @@ const Entertainment = props => (
                     <div className="col" key={object.object_id}>
                         <article className="art-enter-s">
                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                <a><img src={object.thumb_link} /></a>
+                                <a><img className="lazyload" data-src={object.thumb_link} /></a>
                             </Link>
                             <h3>
                                 <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>

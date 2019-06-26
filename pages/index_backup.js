@@ -1,6 +1,5 @@
 import Layout from '../components/MyLayout.js';
 import fetch from 'isomorphic-unfetch';
-import SuggestBar from '../components/home/SuggestBar.js';
 import Featured from '../components/Featured.js';
 import MiddleContent from '../components/home/MiddleContent.js';
 import Video from '../components/home/Video.js';
@@ -10,20 +9,9 @@ import Last from '../components/home/Last.js';
 import React, { Component } from 'react';
 import HeadHome from '../components/home/HeadHome'
 import Footer from '../components/Footer.js';
-import axios from 'axios';
-import FeaturedNews from '../components/FeaturedNews.js';
 
 export default class Index extends Component {
   static async getInitialProps() {
-    const resRegion1 = await fetch('https://apittc.tuoitre.vn/ttc/site?type=feature&slug=ttc-home&region=1', {
-      headers: {
-        'authorization': 'Bearer jx76-VNClfMIEZL9sewMJgz0boOHyOJvakUER8ne',
-        'req-from': 'frontend',
-      }
-    })
-    const dataRegion1 = await resRegion1.json();
-    const dataSuggestBar = (dataRegion1.data.ttc_utils)[0];
-    const dataFeatured = (dataRegion1.data.ttc_featured_news)[0];
     const res = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=8&page=1');
     const listFeatured = await res.json();
     const res2 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=2');
@@ -42,8 +30,6 @@ export default class Index extends Component {
     const listSport = await res8.json();
 
     return {
-      dataSuggestBar,
-      dataFeatured,
       listFeatured: listFeatured,
       dataMiddle: {
         listSection: dataMiddleSection,
@@ -91,8 +77,7 @@ export default class Index extends Component {
         <HeadHome ldJson={ldJson} />
         <div className="main">
           <div className="container">
-            <SuggestBar lists={this.props.dataSuggestBar}/>
-            <FeaturedNews lists={this.props.dataFeatured} />
+            <Featured lists={this.props.listFeatured} />
             {/* <Featured lists={this.props.listFeatured} /> */}
             <span className="line-border"></span>
             <MiddleContent lists={this.props.dataMiddle} />

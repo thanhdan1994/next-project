@@ -16,7 +16,7 @@ const Laugh = props => (
             <section className="content">
                 <div className="list-news">
                     <article className="art-lastest art-b">
-                        <a href="#"><img src="/static/img/photo/8-min.jpg" /><i className="icon icon-video" /></a>
+                        <a href="#"><img className="lazyload" data-src="/static/img/photo/8-min.jpg" /><i className="icon icon-video" /></a>
                         <div className="des">
                             <h4 className="hasComment"><a href="#">Hai Phượng giải nhiệt cơn khát phim hành động Việt</a></h4>
                             <a className="cat" href="#">Thời sự</a>
@@ -28,7 +28,7 @@ const Laugh = props => (
                     {props.lists.map(object => (
                         <article className="art-lastest" key={object.object_id}>
                             <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                <a><img src={object.thumb_link} /><i className="icon icon-video" /></a>
+                                <a><img className="lazyload" data-src={object.thumb_link} /><i className="icon icon-video" /></a>
                             </Link>
                             <div className="des">
                                 <h4 className="hasComment"><a href="#">{object.title}</a></h4>
@@ -39,7 +39,7 @@ const Laugh = props => (
             </section>
             <aside className="sidebar">
                 <div className="block-bar block-qc ui sticky two">
-                    <a href="#"><img src="/static/img/banner-300x600.jpg" /></a>
+                    <a href="#"><img className="lazyload" data-src="/static/img/banner-300x600.jpg" /></a>
                 </div>
             </aside>
         </div>

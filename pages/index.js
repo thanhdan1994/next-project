@@ -10,7 +10,7 @@ import Laugh from '../components/home/Laugh.js';
 import Entertainment from '../components/home/Entertainment.js';
 import Last from '../components/home/Last.js';
 
-export default class Index extends Component {
+class Index extends Component {
   static async getInitialProps() {
     const headers = {
         'authorization': 'Bearer jx76-VNClfMIEZL9sewMJgz0boOHyOJvakUER8ne',
@@ -120,3 +120,5 @@ export default class Index extends Component {
     )
   }
 }
+
+export default Index
