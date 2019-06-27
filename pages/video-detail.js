@@ -37,7 +37,7 @@ class VideoDetail extends Component {
 
     render() {
         return (
-            <Layout>
+            <>
                 <Head>
                     <title>Video - Tuổi trẻ cười</title>
                     <meta name="description" content="" />
@@ -123,7 +123,7 @@ class VideoDetail extends Component {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </>
         )
     }
 }

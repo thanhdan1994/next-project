@@ -31,12 +31,12 @@ export default class Laugh extends PureComponent {
                     <section className="content">
                         <div className="list-news">
                             <article className="art-lastest art-b">
-                                <Link as={`/post/${list_prior[0].id}`} href={`/post?id=${list_prior[0].id}`}>
+                                <Link as={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`} href={`/post?id=${list_prior[0].id}`}>
                                     <a><img className="lazyload" data-src={echoThumbnail('s300', list_prior[0].object_thumbnail)} /></a>
                                 </Link>
                                 <div className="des">
                                     <h4 className="hasComment">
-                                        <Link as={`/post/${list_prior[0].id}`} href={`/post?id=${list_prior[0].id}`}>
+                                        <Link as={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`} href={`/post?id=${list_prior[0].id}`}>
                                             <a>{list_prior[0].object_title}</a>
                                         </Link>
                                     </h4>
@@ -75,7 +75,7 @@ export default class Laugh extends PureComponent {
                     </section>
                     <aside className="sidebar">
                         <div className="block-bar block-qc ui sticky two">
-                            <a href="#"><img className="lazyload" data-src="/static/img/banner-300x600.jpg" /></a>
+                            <a><img className="lazyload" data-src="/static/img/banner-300x600.jpg" /></a>
                         </div>
                     </aside>
                 </div>

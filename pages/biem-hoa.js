@@ -39,7 +39,7 @@ export default class BiemHoa extends Component {
     }
     render() {
         return (
-            <Layout>
+            <>
                 <Head>
                     <title>Biếm hoạ - Tuổi trẻ cười</title>
                     <meta name="description" content="" />
@@ -82,7 +82,7 @@ export default class BiemHoa extends Component {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </>
         )
     }
 }

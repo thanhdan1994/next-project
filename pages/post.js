@@ -1,4 +1,3 @@
-import Layout from '../components/MyLayout.js';
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head'
 import DetailObject from '../components/detail/DetailObject.js';
@@ -6,7 +5,6 @@ import YouCanCare from '../components/detail/YouCanCare.js';
 import LastBlock from '../components/detail/LastBlock.js';
 import JsonLd from '../components/JsonLd';
 import React, { Component } from 'react';
-import Footer from '../components/Footer.js';
 
 export default class Post extends Component {
   static async getInitialProps(context) {
@@ -84,7 +82,7 @@ export default class Post extends Component {
       }
     }
     return (
-      <Layout>
+      <>
         <Head>
           <title>{this.props.objectDetail.title} - Tuổi trẻ cười</title>
           <meta name="description" content={this.props.objectDetail.description} />
@@ -120,7 +118,7 @@ export default class Post extends Component {
             <LastBlock prior={this.props.dataLastBlock.prior} lists={this.props.dataLastBlock.listLastBlock} />
           </div>
         </div>
-      </Layout>
+      </>
     )
   }
 }

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 // import { Modal } from 'react-bootstrap';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import validator from 'validator';
-import axios from 'axios';
 
 class Comment extends Component {
     static propTypes = {

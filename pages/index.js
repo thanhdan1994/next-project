@@ -1,4 +1,3 @@
-import Layout from '../components/MyLayout.js';
 import fetch from 'isomorphic-unfetch';
 import SuggestBar from '../components/home/SuggestBar.js';
 import React, { Component } from 'react';
@@ -35,7 +34,7 @@ class Index extends Component {
         listNewest
     }
     // đáng chú ý
-    const resHighlights = await fetch('https://apittc.tuoitre.vn/ttc/site?type=feature&slug=ttc-home&region=3', {
+    const resHighlights = await fetch(`${process.env.DOMAIN_API_GATEWAY}/ttc/site?type=feature&slug=ttc-home&region=3`, {
         headers
     })
     const dataAside = await resHighlights.json();
@@ -98,7 +97,7 @@ class Index extends Component {
       "url": ""
     }
     return (
-      <Layout>
+      <>
         <HeadHome ldJson={ldJson} />
         <div className="main">
           <div className="container">
@@ -116,7 +115,7 @@ class Index extends Component {
             <MiddleContent lists={this.props.dataMiddle} />
           </div>
         </div>
-      </Layout>
+      </>
     )
   }
 }

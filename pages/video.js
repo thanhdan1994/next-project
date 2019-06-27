@@ -1,9 +1,7 @@
-import Layout from '../components/MyLayout.js';
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import React, { Component } from 'react';
 import Comment from '../components/comment/Comment'
-import Footer from '../components/Footer.js';
 
 class Video extends Component {
     static async getInitialProps() {
@@ -38,7 +36,7 @@ class Video extends Component {
 
     render() {
         return (
-            <Layout>
+            <>
                 <Head>
                     <title>Video - Tuổi trẻ cười</title>
                     <meta name="description" content="" />
@@ -49,7 +47,6 @@ class Video extends Component {
                     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
                     <link href="/static/css/style.min.css" rel="stylesheet" />
                     <script src="/static/js/lib.min.js"></script>
-                    <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>
                 </Head>
                 <div className="main">
                     <div className="container">
@@ -124,7 +121,7 @@ class Video extends Component {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </>
         )
     }
 }
