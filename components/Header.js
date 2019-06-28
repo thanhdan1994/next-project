@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import ActiveLink from './ActiveLink';
 import { useCookies } from 'react-cookie';
+import { API_USER_DOMAIN } from './../constant/Constant';
+import Register from './modals/Register';
 
 function Header() {
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
@@ -10,13 +12,35 @@ function Header() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(false);
 
-  function handleLogin(e) {
-    e.preventDefault()
-    if (email === 'thanhdan26081994@gmail.com' && password === '123456@') {
-      setIsLogin(true);
-      setCookie('infoUser', JSON.stringify({ email: 'thanhdan26081994@gmail.com', age: '25' }))
-      alert("đăng nhập thành công!");
-      $('#loginModal').modal('hide')
+  async function handleLogin(e) {
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('remenberMe', false);
+    let res = await fetch(`${API_USER_DOMAIN}/login.html`, {
+      method: 'POST',
+      body: formData
+
+    })
+    let res1 = await res.json();
+    if (res1.success) {
+      var access_token = res1.data.access_token;
+      var data = new FormData();
+      data.append('access_token', access_token)
+      let res2 = await fetch(`${API_USER_DOMAIN}/login.html`, {
+        method: 'POST',
+        body: data
+
+      })
+      let res3 = await res2.json();
+      if (res3.success) {
+        const { email, name } = res3.data;
+        setIsLogin(true);
+        setCookie('infoUser', JSON.stringify({ email, name }))
+        alert("đăng nhập thành công!");
+        $('#loginModal').modal('hide')
+      }
     }
     setMessage(true)
   }
@@ -54,14 +78,7 @@ function Header() {
                   </Link>
                 </div>
               </div>
-                : <span>
-                  <Link href="#">
-                    <a>Đăng ký</a>
-                  </Link>
-                  |
-                    <Link href="#">
-                    <a data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
-                  </Link>
+                : <span><a href="#" data-toggle="modal" data-target="#registerModal">Đăng ký</a> | <a href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
                 </span>
               }
             </li>
@@ -100,6 +117,7 @@ function Header() {
       <div className="banner-top">
         <div className="container"><img src="/static/img/banner-980x90.jpg" /></div>
       </div>
+      <Register />
       <div className="modal fade modal-login" id="loginModal" tabIndex={-1} role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -135,7 +153,7 @@ function Header() {
                 </div>
               </div>
               <div className="text-left">
-                <a className="link-register" data-toggle="modal" data-target="#registerModal" data-dismiss="modal"><i>Chưa có tài khoản? <strong> Đăng ký ngay</strong></i></a>
+                <a className="link-register" data-toggle="modal" data-target="#registerModal"><i>Chưa có tài khoản? <strong> Đăng ký ngay</strong></i></a>
               </div>
             </div>
           </div>
