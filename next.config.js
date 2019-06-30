@@ -1,7 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-    distDir: 'build',
+    distDir: '.next',
     target: 'serverless',
     generateEtags: false,
     env: {

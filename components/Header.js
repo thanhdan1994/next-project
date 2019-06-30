@@ -1,55 +1,14 @@
-import React, { useState } from 'react'
+import {  useContext } from 'react'
 import Link from 'next/link';
 import ActiveLink from './ActiveLink';
-import { useCookies } from 'react-cookie';
-import { API_USER_DOMAIN } from './../constant/Constant';
-import Register from './modals/Register';
+import ModalRegister from './modals/ModalRegister';
+import ModalLogin from './modals/ModalLogin';
+import { UserConText } from './UserContext';
+import Logined from './Logined';
+
 
 function Header() {
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-  const [isLogin, setIsLogin] = (cookies.infoUser) ? useState(true) : useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(false);
-
-  async function handleLogin(e) {
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('remenberMe', false);
-    let res = await fetch(`${API_USER_DOMAIN}/login.html`, {
-      method: 'POST',
-      body: formData
-
-    })
-    let res1 = await res.json();
-    if (res1.success) {
-      var access_token = res1.data.access_token;
-      var data = new FormData();
-      data.append('access_token', access_token)
-      let res2 = await fetch(`${API_USER_DOMAIN}/login.html`, {
-        method: 'POST',
-        body: data
-
-      })
-      let res3 = await res2.json();
-      if (res3.success) {
-        const { email, name } = res3.data;
-        setIsLogin(true);
-        setCookie('infoUser', JSON.stringify({ email, name }))
-        alert("đăng nhập thành công!");
-        $('#loginModal').modal('hide')
-      }
-    }
-    setMessage(true)
-  }
-
-  function handleLogout(e) {
-    e.preventDefault()
-    setIsLogin(false);
-    removeCookie('infoUser')
-  }
+  const { user } = useContext(UserConText);
   return (
     <header>
       <div className="header-top">
@@ -60,26 +19,8 @@ function Header() {
             <li className="fl"><a title="Tuổi trẻ TV" href="#" rel="nofollow" target="_blank"><img src="/static/img/Tuoi-tre-tv.png" alt="logo tuổi trẻ TV" /></a></li>
             <li className="link-login pull-right">
               {/* <i className="icon-user" /> */}
-              {(isLogin) ? <div className="dropdown dropdown-user">
-                <Link href="javascript:void(0)">
-                  <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img className="img-login" src="https://media.pixcove.com/N/8/8/Man-Gentleman-Silhouette-Gray-Free-Illustrations-F-0424.jpg" />
-                    trần thanh dân
-                            </a>
-                </Link>
-                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end">
-                  <a className="dropdown-item">Bình luận của bạn</a>
-                  <a className="dropdown-item">Bài đã duyệt</a>
-                  <a className="dropdown-item">Cài đặt tài khoản</a>
-                  <Link href="javascript:void(0)">
-                    <a className="dropdown-item" onClick={handleLogout}>
-                      <strong>Đăng xuất</strong>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-                : <span><a href="#" data-toggle="modal" data-target="#registerModal">Đăng ký</a> | <a href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a>
-                </span>
+              {(user.isLogin) ? <Logined name={user.name}/>
+                : <span><a href="#" data-toggle="modal" data-target="#registerModal">Đăng ký</a> | <a href="#" data-toggle="modal" data-target="#loginModal">Đăng nhập</a></span>
               }
             </li>
             <li className="pull-right"><a title="Hot Line" href="tel:0918033133"><i aria-hidden="true" className="icon icon-call" />Hotline: 0918.033.133</a></li>
@@ -117,48 +58,8 @@ function Header() {
       <div className="banner-top">
         <div className="container"><img src="/static/img/banner-980x90.jpg" /></div>
       </div>
-      <Register />
-      <div className="modal fade modal-login" id="loginModal" tabIndex={-1} role="dialog">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            <div className="modal-body">
-              <h4 className="title-modal">Đăng nhập </h4>
-              <form className="frm-general">
-                <div className="form-group">
-                  <label>Email</label>
-                  <input className="form-control" value={email} type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="form-group">
-                  <label>Mật khẩu</label>
-                  <input className="form-control" value={password} type="password" name="pass" onChange={(e) => setPassword(e.target.value)} />
-                  {message ? <p className="warning warning-login-password">Thông tin đăng nhập không đúng</p> : ''}
-                </div>
-                <div className="form-group">
-                  <button className="btn-login" onClick={handleLogin}>Đăng nhập</button>
-                </div>
-                <div className="inner-frm">
-                  <a className="link-forgot" data-toggle="modal" data-target="#resetPassModal" data-dismiss="modal">Quên mật khẩu?</a>
-                </div>
-              </form>
-              <p className="text-center">Hoặc đăng nhập bằng</p>
-              <div className="outer-btn-social">
-                <div className="col">
-                  <a className="btn-facebook" href="#"> <i className="fa fa-facebook" aria-hidden="true" /> Facebook</a>
-                </div>
-                <div className="col">
-                  <a className="btn-google" href="#"><i className="fa fa-google" aria-hidden="true" /> Google</a>
-                </div>
-              </div>
-              <div className="text-left">
-                <a className="link-register" data-toggle="modal" data-target="#registerModal"><i>Chưa có tài khoản? <strong> Đăng ký ngay</strong></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalRegister />
+      <ModalLogin />
       <style jsx global>{`
       /*header-top*/
       .header-top {
