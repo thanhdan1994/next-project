@@ -114,6 +114,8 @@ export default class Post extends Component {
           <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
           <link href="/static/css/style.min.css" rel="stylesheet" />
           <link href="/static/css/video-js.css" rel="stylesheet" />
+          <link href="/static/css/custom-videojs.css" rel="stylesheet" />
+          <link href="//player.tuoitre.vn/player/static/vpcustom.css" type="text/css" rel="stylesheet"></link>
           <script src="/static/js/lib.min.js"></script>
           {/* <script src="//player.tuoitre.vn/player/static/playerInit.js"></script> */}
           {/* GENERAL GOOGLE SEARCH META */}

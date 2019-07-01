@@ -6,13 +6,13 @@ function createMarkup(content) {
 }
 
 const videoJsOptions = {
-    autoplay: true,
-    controls: false,
+    autoplay: false,
+    controls: true,
     sources: [{
         src: 'https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4',
         type: 'video/mp4'
     }],
-    id: 'videojs_hihi'
+    id: 'videojs_4',
 }
 
 const DetailObject = props => (
