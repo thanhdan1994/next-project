@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ActiveLink from './ActiveLink';
 import ModalRegister from './modals/ModalRegister';
 import ModalLogin from './modals/ModalLogin';
+import ModalComment from './modals/ModalComment';
 import { UserConText } from './UserContext';
 import Logined from './Logined';
 
@@ -60,6 +61,7 @@ function Header() {
       </div>
       <ModalRegister />
       <ModalLogin />
+      <ModalComment />
       <style jsx global>{`
       /*header-top*/
       .header-top {

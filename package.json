@@ -25,7 +25,8 @@
     "react-dom": "^16.8.6",
     "redis": "^2.8.0",
     "url-loader": "^2.0.0",
-    "validator": "^11.0.0"
+    "validator": "^11.0.0",
+    "video.js": "^7.5.5"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1"

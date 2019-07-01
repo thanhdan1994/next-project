@@ -34,7 +34,7 @@ export default withCookies(function ModalLogin(props) {
             if (res3.success) {
                 const { email, name } = res3.data;
                 alert("đăng nhập thành công!");
-                dispatch({type: 'login'})
+                dispatch({type: 'login', isLogin: true, name: name, email: email})
                 // localStorage.setItem('infoUser', JSON.stringify({ email, name }))
                 cookies.set('infoUser', JSON.stringify({ email, name }))
                 $('#loginModal').modal('hide')

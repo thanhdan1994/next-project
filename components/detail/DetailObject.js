@@ -1,7 +1,18 @@
 import Link from 'next/link'
 import Comment from '../comment/Comment'
+import VideoPlayer from '../videojs/VideoPlayer';
 function createMarkup(content) {
     return { __html: content };
+}
+
+const videoJsOptions = {
+    autoplay: true,
+    controls: false,
+    sources: [{
+        src: 'https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4',
+        type: 'video/mp4'
+    }],
+    id: 'videojs_hihi'
 }
 
 const DetailObject = props => (
@@ -40,7 +51,23 @@ const DetailObject = props => (
                 <div className="outer-body outer-body-2">
                     <article className="art-body fck scrollToTwo">
                         <p className="summary">{props.detail.description}</p>
-                        <div dangerouslySetInnerHTML={createMarkup(props.detail.object_content)} />]
+                        <div dangerouslySetInnerHTML={createMarkup(props.detail.object_content)} />
+                        <div className="inner-media">
+                            <div className="video-wrap">
+                                <div className="video">
+                                    <div className="tt-vplayer-content">
+                                        <VideoPlayer { ...videoJsOptions } />
+                                        {/* <video id="ttplayer_4"
+                                            className="tt-vplayer video-js tt-vplayer-visibility"
+                                            style={{ width: '100%' }}
+                                            preload='none'
+                                            poster="https://sstaticcuoi.tuoitre.vn/ttc/i/s1280/2019/05/21/untitled-77-1558435104.jpg"
+                                            // data-m3u8="https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8" />
+                                            data-vid="https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4" /> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {props.detail.related_article.map(object => (
                             <div className="block-related" key={object.object_id}>
                                 <ul>
@@ -73,7 +100,7 @@ const DetailObject = props => (
                 <div className="tag-bar">
                     <div className="tag"><a>cố thủ tướng</a> <a>Phan Văn Khải</a> <a>Quốc tang</a> <a>Cố thủ tướng</a></div>
                 </div>
-                <Comment />
+                <Comment ObjectId={props.detail.object_id} />
             </div>
             <div className="box-300">
                 <div className="block-banner"><a><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />

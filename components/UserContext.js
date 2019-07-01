@@ -6,7 +6,7 @@ const UserConText = React.createContext();
 function reducer(state, action) {
     switch (action.type) {
         case 'login':
-            return {...state, isLogin: true}
+            return {...state, isLogin: action.isLogin, name: action.name, email: action.email}
         case 'logout':
             return {...state, isLogin: false}
         default:
@@ -19,7 +19,8 @@ function UserProvider(props) {
     const [cookies] = useCookies();
     const initialState = {
         isLogin: cookies['infoUser'] ? true : false,
-        name: cookies['infoUser'] ? cookies['infoUser'].name : ''
+        name: cookies['infoUser'] ? cookies['infoUser'].name : '',
+        email: cookies['infoUser'] ? cookies['infoUser'].email : ''
     }
     const [user, dispatch] = useReducer(reducer, initialState);
     return (

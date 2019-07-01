@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
 import { PureComponent } from 'react';
+import BoxComment from '../comment/BoxComment';
 export default class Video extends PureComponent {
     render() {
         let itemHighlight = this.props.lists.list_primary;
@@ -12,10 +13,12 @@ export default class Video extends PureComponent {
             object_author_name, id
         } = dataHighlight;
         // get src video
-        let regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+        let regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/; //gi
         let found = object_content.match(regex);
         let srcVideo = found[0];
+        // let srcVideo = 'https://player.tuoitrenews.vn' + found[1].replace('/ttc/r/', '/hls/') + '/playlist.m3u8';
         let { list_newest } = this.props.lists;
+        // https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8
         return (
             <div className="block-video">
                 <h2 className="title">
@@ -52,14 +55,14 @@ export default class Video extends PureComponent {
                     <div className="inner-media">
                         <div className="video-wrap">
                             <div className="video">
-                                <div style={{ backgroundColor: '#f6f6f6' }} className="media-content">
-                                    <div className="tt-vplayer-content">
-                                        <video id="ttplayer_8"
-                                            className="tt-vplayer video-js tt-vplayer-visibility"
-                                            style={{ width: '100%' }}
-                                            poster={echoThumbnail('s1280', object_thumbnail)}
-                                            data-vid={srcVideo} />
-                                    </div>
+                                <div className="tt-vplayer-content">
+                                    <video id="ttplayer_4"
+                                        className="tt-vplayer video-js tt-vplayer-visibility"
+                                        style={{ width: '100%' }}
+                                        preload='none'
+                                        poster={echoThumbnail('s1280', object_thumbnail)}
+                                        // data-m3u8="https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8" />
+                                        data-vid={srcVideo} />
                                 </div>
                             </div>
                         </div>
@@ -101,12 +104,7 @@ export default class Video extends PureComponent {
                                     <a className="facebookmes" href="#"><i className="icon-messenger" /> Facebook messenger</a>
                                 </div>
                             </li>
-                            <li className="text-cm">
-                                <textarea placeholder="Viết bình luận" />
-                                <button className="btn-comment">
-                                    <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-                                </button>
-                            </li>
+                            <BoxComment ObjectId={id}/>
                         </ul>
                     </div>
                 </article>

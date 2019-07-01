@@ -32,6 +32,14 @@ export default class Post extends Component {
   }
 
   componentDidMount() {
+    // let s1 = document.createElement("script"),
+    //   s0 = document.getElementsByTagName("script"),
+    //   snode = s0[s0.length - 1];
+    // s1.async = true;
+    // s1.src = '//player.tuoitre.vn/player/static/playerInit.js';
+    // s1.charset = 'UTF-8';
+    // snode.parentNode.insertBefore(s1, snode);
+    
     if ($(".btn-top").length > 0) {
       $(window).scroll(function () {
         var e = $(window).scrollTop();
@@ -105,8 +113,9 @@ export default class Post extends Component {
           <meta name="twitter:site" content="tuoitrecuoi.vn" />
           <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
           <link href="/static/css/style.min.css" rel="stylesheet" />
+          <link href="/static/css/video-js.css" rel="stylesheet" />
           <script src="/static/js/lib.min.js"></script>
-          <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>
+          {/* <script src="//player.tuoitre.vn/player/static/playerInit.js"></script> */}
           {/* GENERAL GOOGLE SEARCH META */}
           <JsonLd data={ldJson} />
         </Head>
