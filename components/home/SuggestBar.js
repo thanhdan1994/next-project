@@ -4,7 +4,6 @@ import { PureComponent } from 'react'
 class SuggestBar extends PureComponent {
     render() {
         const { lists } = this.props;
-
         return (
             <div className="suggest-bar">
                 <ul className="subMenu-bottom">

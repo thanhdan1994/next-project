@@ -1,151 +1,98 @@
-import Link from 'next/link'
 import Comment from '../comment/Comment'
-import VideoPlayer from '../videojs/VideoPlayer';
+import HighLights from './HighLights';
+import { echoThumbnail, timeSince } from '../../constant/Helpers';
+
 function createMarkup(content) {
     return { __html: content };
 }
 
-const videoJsOptions = {
-    autoplay: false,
-    controls: true,
-    sources: [{
-        src: 'https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4',
-        type: 'video/mp4'
-    }],
-    id: 'videojs_4',
-}
-
-const DetailObject = props => (
-    <div>
-        <h2 className="title">
-            <i className="icon icon-laugh" />
-            <div className="inner-title">
-                <h2><a>Đời cười</a>
-                    <span className="inner">
-                        <a>Bình luận</a>
-                        <a>Miễn bình luận</a>
-                        <a>Góc nhìn</a>
-                    </span>
-                </h2>
-                <ul className="list-cat">
-                    <li><a href="javascript:void(0)" rel="nofollow" title="Breaking news" className="icon-direction"> </a></li>
-                    <li><a>Cười xối xả</a></li>
-                    <li><a>TV show</a></li>
-                    <li><a>Show cười</a></li>
-                </ul>
-            </div>
-        </h2>
-        <div className="row-1">
-            <div className="box-665">
-                <article className="art-header">
-                    <h1>{props.detail.title}</h1>
-                    <div className="tool-date">
-                        <a className="link-cate" href="">{props.detail.cate_name[0]}</a>
-                        <span><i className="fa fa-clock-o" aria-hidden="true" /> {props.detail.time_updated}</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div className="row-1 scrollToOne">
-            <div className="box-665">
-                <div className="outer-body outer-body-2">
-                    <article className="art-body fck scrollToTwo">
-                        <p className="summary">{props.detail.description}</p>
-                        <div dangerouslySetInnerHTML={createMarkup(props.detail.object_content)} />
-                        <div className="inner-media">
-                            <div className="video-wrap">
-                                <div className="video">
-                                    <div className="tt-vplayer-content">
-                                        <VideoPlayer { ...videoJsOptions } />
-                                        {/* <video id="ttplayer_4"
-                                            className="tt-vplayer video-js tt-vplayer-visibility"
-                                            style={{ width: '100%' }}
-                                            preload='none'
-                                            poster="https://sstaticcuoi.tuoitre.vn/ttc/i/s1280/2019/05/21/untitled-77-1558435104.jpg"
-                                            // data-m3u8="https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8" />
-                                            data-vid="https://test_ttc_resource.ss-cdn.vccloud.vn/ttc/r/2019/05/21/18-5-19-luong-1558434929.mp4" /> */}
-                                    </div>
-                                </div>
-                            </div>
+function DetailObject(props) {
+    const { object_title, object_excerpt, tags, object_content, related_objects, object_author_name, id, object_date } = props.detail
+    const { termPrimary } = props;
+    const splitTerm = termPrimary.slug.split('/');
+    const termLink = splitTerm[splitTerm.length - 1];
+    return (
+        <div>
+            <ul className="list-cat list-cat-1">
+                <li><a href="javascript:void(0)" rel="nofollow" title="Breaking news" className="icon-direction"> </a>
+                </li>
+                <li><a href={props.tags[0].tag_link}>{props.tags[0].tag_name}</a></li>
+                <li><a href={props.tags[1].tag_link}>{props.tags[1].tag_name}</a></li>
+                <li><a href={props.tags[3].tag_link}>{props.tags[3].tag_name}</a></li>
+            </ul>
+            <h2 className="title">
+                <i className="icon icon-news" />
+                <div className="inner-title">
+                    <h2 className="active"><a href="/tin-tuc">Tin tức</a>
+                    </h2>
+                    <ul className="list-cat">
+                        <li className={termPrimary.id == process.env.TTC_TERM_DOI_CUOI ? 'active' : ''}><a href="/doi-cuoi">Đời cười</a></li>
+                        <li className={termPrimary.id == process.env.TTC_TERM_GIAI_TRI ? 'active' : ''}><a href="/giai-tri">Giải trí</a></li>
+                        <li className={termPrimary.id == process.env.TTC_TERM_SONG_TRE ? 'active' : ''}><a href="/song-tre">Sống trẻ</a></li>
+                        <li className={termPrimary.id == process.env.TTC_TERM_THE_THAO ? 'active' : ''}><a href="/the-thao">Thể thao</a></li>
+                    </ul>
+                </div>
+            </h2>
+            <div className="row-1">
+                <div className="box-665">
+                    <article className="art-header">
+                        <h1>{object_title}</h1>
+                        <div className="tool-date">
+                            <a className="link-cate" href={`/${termLink}`}>{termPrimary.name}</a>
+                            <span><i className="fa fa-clock-o" aria-hidden="true" /> {timeSince(object_date * 1000)} trước</span>
                         </div>
-                        {props.detail.related_article.map(object => (
-                            <div className="block-related" key={object.object_id}>
-                                <ul>
-                                    <li>
-                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                            <a><img src={object.object_id} /></a>
-                                        </Link>
-                                        <div className="des">
-                                            <h3>
-                                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                                    <a>{object.title}</a>
-                                                </Link>
-                                            </h3>
-                                            <p>{object.description}</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        ))}
-                        <ul className="tool ui sticky two">
-                            <li><span><i className="fa fa-facebook" aria-hidden="true" /></span></li>
-                            <li><span><i className="fa fa-twitter" aria-hidden="true" /></span></li>
-                            <li><span><i className="fa fa-envelope" aria-hidden="true" /></span></li>
-                            <li><span><i className="fa fa-print" aria-hidden="true" /></span></li>
-                            <li className="border-t"><span><i className="fa fa-heart" aria-hidden="true" /> </span>100</li>
-                        </ul>
                     </article>
                 </div>
-                <p className="author">{props.detail.author}</p>
-                <div className="tag-bar">
-                    <div className="tag"><a>cố thủ tướng</a> <a>Phan Văn Khải</a> <a>Quốc tang</a> <a>Cố thủ tướng</a></div>
-                </div>
-                <Comment ObjectId={props.detail.object_id} />
             </div>
-            <div className="box-300">
-                <div className="block-banner"><a><img src="/static/img/banner-300x250.jpg" /></a></div> <span className="line-border-s mar-20" />
-                <div className="block-subscibe mar-20">
-                    <form className="frm-subscibe">
-                        <input type="text" className="txt-subscibe" placeholder="Email của bạn" />
-                        <button className="btn-subscibe">Nhận tin</button>
-                    </form>
-                    <h4><i className="icon icon-mail" /> Đọc những tin tức nóng nhất trên TTC</h4>
-                    <p>Bạn sẽ nhận được các tin nổi bật trên TTC, nếu không muốn bạn có thể tắt bất cứ lúc nào.</p>
-                </div> <span className="line-border mar-20" />
-                <div className="block-bar">
-                    <h3 className="title-note">Đáng chú ý</h3>
-                    {props.lists.map((object, index) => {
-                        if (index === 0) {
-                            return <article className="art-bar-b" key={index}>
-                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                    <a><img src={object.thumb_link} /></a>
-                                </Link>
-                                <h4>
-                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a>{object.title}</a>
-                                    </Link>
-                                </h4>
-                            </article>
-                        } else {
-                            return <article className="art-bar-s art-hori" key={index}>
-                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                    <a><img src={object.thumb_link} /></a>
-                                </Link>
-                                <div className="des">
-                                    <h4>
-                                        <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                            <a>{object.title}</a>
-                                        </Link>
-                                    </h4>
+            <div className="row-1 scrollToOne">
+                <div className="box-665">
+                    <div id="cont2" className="outer-body outer-body-2">
+                        <article className="art-body fck scrollToTwo">
+                            <p className="summary">{object_excerpt}</p>
+                            <div dangerouslySetInnerHTML={createMarkup(object_content)} />
+                            {related_objects.map(object => object.object_status === 1 ? (
+                                <div className="block-related" key={object.id}>
+                                    <ul>
+                                        <li>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
+                                            <div className="des">
+                                                <h3>
+                                                    <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
+                                                </h3>
+                                                <p>{object.object_excerpt}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </article>
-                        }
-                    })}
+                            ) : '')}
+                            <ul className="tool ui sticky two">
+                                <li><span><i className="fa fa-facebook" aria-hidden="true" /></span></li>
+                                <li><span><i className="fa fa-twitter" aria-hidden="true" /></span></li>
+                                <li><span><i className="fa fa-envelope" aria-hidden="true" /></span></li>
+                                <li><span><i className="fa fa-print" aria-hidden="true" /></span></li>
+                                <li className="border-t">
+                                    <iframe src="//stcuoi.tuoitre.vn/vote/iframe?app_id=15&layout=ttc_object&app_id_tracker=7&object_id=522&cat_id=2&user_agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36&ip=99.99.99.4&app_url=">
+
+                                    </iframe>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                    <p className="author">{object_author_name}</p>
+                    <div className="tag-bar">
+                        <div className="tag">
+                            {tags.map(tag => (
+                                <a key={tag.id} href={`/chu-de/${tag.tag_slug}/${tag.id}.html`}>{tag.tag_name}</a>
+                            ))}
+                        </div>
+                    </div>
+                    <Comment ObjectId={id} />
                 </div>
-                <div className="block-bar block-banner ui sticky one"><a><img src="/static/img/banner-300x250.jpg" /></a></div>
+                <div className="box-300">
+                    <HighLights listHighlights={props.listHighlights} />
+                </div>
             </div>
         </div>
-    </div>
-
-)
+    )
+}
 export default DetailObject

@@ -8,53 +8,34 @@ import React, { Component } from 'react';
 
 export default class Post extends Component {
   static async getInitialProps(context) {
+    const headers = {
+      'authorization': 'Bearer jx76-VNClfMIEZL9sewMJgz0boOHyOJvakUER8ne',
+      'req-from': 'frontend',
+    }
     const { id } = context.query;
-    const res = await fetch(`https://api.tuoitre.vn/mobileapp/objectdetail?token=da039e81&id=${id}`);
-    const objectDetail = await res.json();
-    const res2 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=2');
-    const listHighlights = await res2.json();
-    const res3 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=3');
-    const listYouCanCare = await res3.json();
-    const res4 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=1&page=1');
-    const prior = await res4.json();
-    const res5 = await fetch('https://api.tuoitre.vn/mobileapp/catpage?token=da039e81&limit=5&page=5');
-    const listLastBlock = await res5.json();
+    const res = await fetch(`https://apittc.tuoitre.vn/ttc/detail?preslug=ttc&slug=post&region=1&id=${id}`, {headers})
+    const dataRegion1 = await res.json();
+    const listTag = dataRegion1.data.ttc_utils[0].list
+    const termPrimary = dataRegion1.data.ttc_utils[1].term;
+    const res2 = await fetch(`https://apittc.tuoitre.vn/ttc/detail?preslug=ttc&slug=post&region=2&id=${id}`, {headers});
+    const dataRegion2 = await res2.json();
+    const objectDetail = dataRegion2.data.ttc_content_detail[0];
+    const res3 = await fetch(`https://apittc.tuoitre.vn/ttc/detail?preslug=ttc&slug=post&region=3&id=${id}`, {headers});
+    const dataRegion3 = await res3.json();
+    const listHighlights = dataRegion3.data.ttc_custom_list[0].sidebar_table_mostview_mostview;
+    const res4 = await fetch(`https://apittc.tuoitre.vn/ttc/detail?preslug=ttc&slug=post&region=4&id=${id}`, {headers});
+    const dataRegion4 = await res4.json();
+    const listYouCanCare = dataRegion4.data.ttc_content_detail[0].detail_list_more
+    const dataLastBlock = dataRegion4.data.ttc_custom_list[0].detail_newest;
 
     return {
+      listTag,
+      termPrimary,
       objectDetail: objectDetail,
       listHighlights: listHighlights,
       listYouCanCare: listYouCanCare,
-      dataLastBlock: {
-        prior: prior,
-        listLastBlock: listLastBlock
-      }
+      dataLastBlock: dataLastBlock
     };
-  }
-
-  componentDidMount() {
-    // let s1 = document.createElement("script"),
-    //   s0 = document.getElementsByTagName("script"),
-    //   snode = s0[s0.length - 1];
-    // s1.async = true;
-    // s1.src = '//player.tuoitre.vn/player/static/playerInit.js';
-    // s1.charset = 'UTF-8';
-    // snode.parentNode.insertBefore(s1, snode);
-    
-    if ($(".btn-top").length > 0) {
-      $(window).scroll(function () {
-        var e = $(window).scrollTop();
-        if (e > 100) {
-          $(".btn-top").show()
-        } else {
-          $(".btn-top").hide()
-        }
-      });
-      $(".btn-top").click(function () {
-        $('body,html').animate({
-          scrollTop: 0
-        })
-      });
-    }
   }
 
   render() {
@@ -93,22 +74,22 @@ export default class Post extends Component {
       <>
         <Head>
           <title>{this.props.objectDetail.title} - Tuổi trẻ cười</title>
-          <meta name="description" content={this.props.objectDetail.description} />
+          <meta name="description" content={this.props.objectDetail.object_excerpt} />
           <meta name="keywords" content="" />
           <meta name="robots" content="index, follow" />
           <meta name="author" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           {/*  Open Graph tags  */}
           <meta property="og:type" content="article" />
-          <meta property="og:title" content={this.props.objectDetail.title + ' - Tuổi trẻ cười'} />
-          <meta property="og:description" content={this.props.objectDetail.description} />
+          <meta property="og:title" content={this.props.objectDetail.object_title + ' - Tuổi trẻ cười'} />
+          <meta property="og:description" content={this.props.objectDetail.object_excerpt} />
           <meta property="og:image" content={this.props.objectDetail.thumb_link} />
-          <meta property="og:url" content={'http://tuoitrecuoi.vn/post/' + this.props.objectDetail.object_id} />
+          <meta property="og:url" content={'http://tuoitrecuoi.vn/post/' + this.props.objectDetail.id} />
           <meta property="og:site_name" content="tuoitrecuoi.vn" />
           <meta property="fb:admins" content="https://www.facebook.com/tuoitrecuoi" />
           {/* Twitter */}
-          <meta name="twitter:title" content={this.props.objectDetail.title + ' - Tuổi trẻ cười'} />
-          <meta name="twitter:description" content={this.props.objectDetail.description} />
+          <meta name="twitter:title" content={this.props.objectDetail.object_title + ' - Tuổi trẻ cười'} />
+          <meta name="twitter:description" content={this.props.objectDetail.object_excerpt} />
           <meta name="twitter:image" content={this.props.objectDetail.thumb_link} />
           <meta name="twitter:site" content="tuoitrecuoi.vn" />
           <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
@@ -117,16 +98,24 @@ export default class Post extends Component {
           <link href="/static/css/custom-videojs.css" rel="stylesheet" />
           <link href="//player.tuoitre.vn/player/static/vpcustom.css" type="text/css" rel="stylesheet"></link>
           <script src="/static/js/lib.min.js"></script>
-          {/* <script src="//player.tuoitre.vn/player/static/playerInit.js"></script> */}
+          <script src="/static/js/lazysizes.min.js"></script>
+          <script src="/static/js/start.min.js" async></script>
+          <script src="/static/js/convert-img.js" async></script>
+          <script src="//player.tuoitre.vn/player/static/playerInit.js" async></script>
           {/* GENERAL GOOGLE SEARCH META */}
           <JsonLd data={ldJson} />
         </Head>
         <div className="main">
           <div className="container">
-            <DetailObject detail={this.props.objectDetail} lists={this.props.listHighlights} />
-            <YouCanCare lists={this.props.listYouCanCare} />
+            <DetailObject termPrimary={this.props.termPrimary} tags={this.props.listTag} detail={this.props.objectDetail.detail} listHighlights={this.props.listHighlights}/>
+            <YouCanCare listYouCanCare={this.props.listYouCanCare} />
             <span className="line-border"></span>
-            <LastBlock prior={this.props.dataLastBlock.prior} lists={this.props.dataLastBlock.listLastBlock} />
+            <LastBlock dataLastBlock={this.props.dataLastBlock} />
+            <input type="hidden" name="hidObjectId" defaultValue={this.props.objectDetail.detail.id} />
+            <input type="hidden" name="hidObjectTitle" defaultValue={this.props.objectDetail.detail.object_title} />
+            <input type="hidden" name="hidFilter" defaultValue="like" />
+            <input type="hidden" name="hidTermId" defaultValue={this.props.objectDetail.detail.term_primary} />
+            <input type="hidden" name="hidUserIp" />
           </div>
         </div>
       </>

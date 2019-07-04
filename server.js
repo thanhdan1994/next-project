@@ -1,7 +1,7 @@
 const express = require('express');
 const next = require('next');
 const cookieParser = require('cookie-parser');
-const cacheableResponse = require('cacheable-response')
+const cacheableResponse = require('cacheable-response');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 3000

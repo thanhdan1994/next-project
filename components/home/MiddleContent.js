@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import React, { PureComponent } from 'react';
-import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
+import { echoThumbnail } from './../../constant/Helpers';
 
 export default class MiddleContent extends PureComponent {
     componentDidMount() {
@@ -22,51 +21,46 @@ export default class MiddleContent extends PureComponent {
                                 <div className="slick-thumb">
                                     {resources.map((item, index) => {
                                         let resource_url = item.resource_url;
+                                        // remove image have heigth > width
                                         if (resource_url.search('-doc-')) {
                                             return <div key={index}>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                                <a className="thumb"><img className="lazyload" data-src={echoThumbnail('r', item.resource_url)} /></a>
-                                            </Link>
-                                        </div>
+                                                <a className="thumb" href={`/${object.object_slug}/${object.id}.html`}><img className="lazyload" data-src={echoThumbnail('r', item.resource_url)} /></a>
+                                            </div>
                                         }
                                     })}
                                 </div>
                                 <div className="des">
                                     <h3>
-                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                            <a title={object.object_title}>{object.object_title}</a>
-                                        </Link>
+                                        <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                     </h3>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a className="btn-viewmore" title={object.object_title}>Xem thêm <i className="icon icon-viewmore" /></a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`} className="btn-viewmore" title={object.object_title}>Xem thêm <i className="icon icon-viewmore" /></a>
                                 </div>
                             </article>
                         })}
                         {this.props.lists.listSection.listNewest.map((object, index) => {
                             if (index === 0) {
                                 return <article className="art-lastest art-b" key={index}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a title={object.object_title}><img className="lazyload" data-src={echoThumbnail('s300', object.object_thumbnail)} /></a>
-                                    </Link>
+
+                                    <a href={`/${object.object_slug}/${object.id}.html`}>
+                                        <img className="lazyload" data-src={echoThumbnail('s300', object.object_thumbnail)} />
+                                        { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                    </a>
+
                                     <div className="des">
                                         <h4 className="hasComment">
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                                <a title={object.object_title}>{object.object_title}</a>
-                                            </Link>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                         </h4>
                                     </div>
                                 </article>
                             } else {
                                 return <article className="art-lastest" key={index}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a title={object.object_title}><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`}>
+                                        <img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} />
+                                        { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                    </a>
                                     <div className="des">
                                         <h4>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                                <a title={object.object_title}>{object.object_title}</a>
-                                            </Link>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                         </h4>
                                     </div>
                                 </article>
@@ -81,28 +75,23 @@ export default class MiddleContent extends PureComponent {
                             {this.props.lists.listAside.map((object, index) => {
                                 if (index === 0) {
                                     return <article className="art-bar-b" key={index}>
-                                        <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                            <a>
-                                                <img className="lazyload" data-src={echoThumbnail('s300', object.object_thumbnail)} />
-                                                <i className="icon icon-video-b"></i>
-                                            </a>
-                                        </Link>
+                                        <a href={`/${object.object_slug}/${object.id}.html`}>
+                                            <img className="lazyload" data-src={echoThumbnail('s300', object.object_thumbnail)} />
+                                            { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                        </a>
                                         <h4>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                                <a>{object.object_title}</a>
-                                            </Link>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                         </h4>
                                     </article>
                                 }
                                 return <article className="art-bar-s art-hori" key={index}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                        <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`}>
+                                        <img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} />
+                                        { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                    </a>
                                     <div className="des">
                                         <h4>
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                                <a title="">{object.object_title}</a>
-                                            </Link>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                         </h4>
                                     </div>
                                 </article>

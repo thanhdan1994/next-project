@@ -7,16 +7,12 @@ const Last = props => (
                 <i className="icon icon-young" />
                 <div className="inner-title">
                     <h2 className="active">
-                        <Link href="/song-tre">
-                        <a>Sống trẻ</a>
-                        </Link>
+                        <a href="/song-tre">Sống trẻ</a>
                     </h2>
                     <ul className="list-cat">
                     {props.dataLeft.list_tag.map((tag, index) => (
                         <li key={index}>
-                            <Link href={tag.tag_link}>
-                                <a>{tag.tag_name}</a>
-                            </Link>
+                            <a href={`/chu-de/${tag.tag_slug}/${tag.id}.html`}>{tag.tag_name}</a>
                         </li>
                     ))}
                     </ul>
@@ -26,13 +22,9 @@ const Last = props => (
                 {props.dataLeft.data.map(object => (
                     <div className="col-6" key={object.id}>
                     <article className="art art-young" key={object.id}>
-                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                        <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                    </Link>
+                        <a href={`/${object.object_slug}/${object.id}.html`}><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                         <h3>
-                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                <a>{object.object_title}</a>
-                            </Link>
+                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                         </h3>
                     </article>
                 </div>
@@ -44,16 +36,12 @@ const Last = props => (
                 <i className="icon icon-sport" />
                 <div className="inner-title">
                     <h2 className="active">
-                        <Link href="/the-thao">
-                            <a>Thể thao</a>
-                        </Link>
+                        <a href="/the-thao">Thể thao</a>
                     </h2>
                     <ul className="list-cat">
                     {props.dataRight.list_tag.map((tag, index) => (
                         <li key={index}>
-                            <Link href={tag.tag_link}>
-                                <a>{tag.tag_name}</a>
-                            </Link>
+                            <a href={`/chu-de/${tag.tag_slug}/${tag.id}.html`}>{tag.tag_name}</a>
                         </li>
                     ))}
                     </ul>
@@ -63,13 +51,9 @@ const Last = props => (
                 {props.dataRight.data.map(object => (
                     <div className="col-6" key={object.id}>
                     <article className="art art-young">
-                        <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                            <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                        </Link>
+                        <a href={`/${object.object_slug}/${object.id}.html`}><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                         <h3>
-                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                <a>{object.object_title}</a>
-                            </Link>
+                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                         </h3>
                     </article>
                 </div>

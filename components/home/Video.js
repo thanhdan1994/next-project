@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { echoThumbnail, buildLinkObject } from './../../constant/Helpers';
+import { echoThumbnail } from './../../constant/Helpers';
 import { PureComponent } from 'react';
 import BoxComment from '../comment/BoxComment';
 export default class Video extends PureComponent {
@@ -25,28 +24,17 @@ export default class Video extends PureComponent {
                     <i className="icon icon-title-video" />
                     <div className="inner-title">
                         <h2>
-                            <Link href="/video">
-                                <a>Videos</a>
-                            </Link>
+                            <a href="/video">Videos</a>
                         </h2>
                         <ul className="list-cat">
-                            <li>
-                                <Link href={tagsHighlight[0].tag_link}>
-                                    <a>{tagsHighlight[0].tag_name}</a>
-                                </Link>
-
+                            <li> 
+                                <a href={`/chu-de/${tagsHighlight[0].tag_slug}/${tagsHighlight[0].id}.html`}>{tagsHighlight[0].tag_name}</a>
                             </li>
                             <li>
-                                <Link href={tagsHighlight[2].tag_link}>
-                                    <a>{tagsHighlight[2].tag_name}</a>
-                                </Link>
-
+                                <a href={`/chu-de/${tagsHighlight[2].tag_slug}/${tagsHighlight[2].id}.html`}>{tagsHighlight[2].tag_name}</a>
                             </li>
                             <li>
-                                <Link href={tagsHighlight[3].tag_link}>
-                                    <a>{tagsHighlight[3].tag_name}</a>
-                                </Link>
-
+                                <a href={`/chu-de/${tagsHighlight[3].tag_slug}/${tagsHighlight[3].id}.html`}>{tagsHighlight[3].tag_name}</a>
                             </li>
                         </ul>
                     </div>
@@ -61,23 +49,19 @@ export default class Video extends PureComponent {
                                         style={{ width: '100%' }}
                                         preload='none'
                                         poster={echoThumbnail('s1280', object_thumbnail)}
-                                        // data-m3u8="https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8" />
-                                        data-vid={srcVideo} />
+                                        data-m3u8="https://player.tuoitrenews.vn/hls/2019/06/03/love-bird-hill-1559537709.mp4/playlist.m3u8" />
+                                        {/* data-vid={srcVideo} /> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="des">
                         <h1>
-                            <Link as={`/${object_slug}/${id}.html`} href={buildLinkObject(object_slug, id)}>
-                                <a>{object_title}</a>
-                            </Link>
+                            <a href={`/${object_slug}/${id}.html`}>{object_title}</a>
                         </h1>
                         <ul className="list-tool">
                             <li>
-                                <Link href="/video">
-                                    <a>Video</a>
-                                </Link>
+                                <a href='/video'>Video</a>
                             </li>
                             <li>{object_author_name}</li>
                         </ul>
@@ -86,16 +70,15 @@ export default class Video extends PureComponent {
                             {tags.map((tag, index) => {
                                 let linkTag = '/chu-de/' + tag.tag_slug + '/' + tag.id + "/.html";
                                 if (index < 4) {
-                                    return <Link href={linkTag} key={index}>
-                                        <a>{tag.tag_name}</a>
-                                    </Link>
-
+                                    return <a key={index} href={linkTag}>{tag.tag_name}</a>
                                 }
                             })}
                         </div>
                         <ul className="list-social-1 list-cm">
                             {/* <li><i class="fa fa-heart-o" aria-hidden="true"></i> 230</li> */}
-                            <li><iframe src="/static/iframe/like_new-18.html" style={{ width: '59px', height: '31px' }} /></li>
+                            <li>
+                                <iframe src="//stcuoi.tuoitre.vn/vote/iframe?app_id=15&layout=ttc_object_character&app_id_tracker=7&object_id=526&cat_id=7&user_agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36&ip=99.99.99.4&app_url=" />
+                            </li>
                             <li className="outer-share">
                                 <i className="icon icon-share" aria-hidden="true" /> 100
               <div className="block-share">
@@ -112,13 +95,12 @@ export default class Video extends PureComponent {
                     {list_newest.map(object => (
                         <div className="col-sm-3" key={object.id}>
                             <article className="art-video-top playing">
-                                <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                    <a className="thumb"><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                                </Link>
+                                <a className="thumb" href={`/${object.object_slug}/${object.id}.html`}>
+                                    <img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} />
+                                    { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                </a>
                                 <h3>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={buildLinkObject(object.object_slug, object.id)}>
-                                        <a>{object.object_title}</a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                 </h3>
                             </article>
                         </div>

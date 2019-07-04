@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { PureComponent } from 'react';
 import { echoThumbnail } from '../../constant/Helpers';
 
@@ -12,16 +11,12 @@ export default class Laugh extends PureComponent {
                     <i className="icon icon-laugh" />
                     <div className="inner-title">
                         <h2>
-                            <Link href="/doi-cuoi">
-                                <a>Đời cười</a>
-                            </Link>
+                            <a href="/doi-cuoi">Đời cười</a>
                         </h2>
                         <ul className="list-cat">
                             {list_tag.map((tag, index) => (
                                 <li key={index}>
-                                    <Link href={tag.tag_link}>
-                                        <a>{tag.tag_name}</a>
-                                    </Link>
+                                    <a href={tag.tag_link}>{tag.tag_name}</a>
                                 </li>
                             ))}
                         </ul>
@@ -31,25 +26,19 @@ export default class Laugh extends PureComponent {
                     <section className="content">
                         <div className="list-news">
                             <article className="art-lastest art-b">
-                                <Link as={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`} href={`/post?id=${list_prior[0].id}`}>
-                                    <a><img className="lazyload" data-src={echoThumbnail('s300', list_prior[0].object_thumbnail)} /></a>
-                                </Link>
+                                <a href={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`}>
+                                    <img className="lazyload" data-src={echoThumbnail('s300', list_prior[0].object_thumbnail)} />
+                                </a>
                                 <div className="des">
                                     <h4 className="hasComment">
-                                        <Link as={`/${list_prior[0].object_slug}/${list_prior[0].id}.html`} href={`/post?id=${list_prior[0].id}`}>
-                                            <a>{list_prior[0].object_title}</a>
-                                        </Link>
+                                        <a>{list_prior[0].object_title}</a>
                                     </h4>
-                                    <Link href="/doi-cuoi">
-                                        <a className="cat">Đời cười</a>
-                                    </Link>
+                                    <a href="/doi-cuoi" className="cat">Đời cười</a>
                                     {
                                         related_objects[0]
                                             ? <article className="art-s">
                                                 <h4>
-                                                    <Link as={`/${related_objects[0].object_slug}/${related_objects[0].id}.html`} href={`/post?id=${related_objects[0].id}`}>
-                                                        <a>{related_objects[0].object_title}</a>
-                                                    </Link>
+                                                    <a href={`/${related_objects[0].object_slug}/${related_objects[0].id}.html`}>{related_objects[0].object_title}</a>
                                                 </h4>
                                             </article>
                                             : ''
@@ -59,14 +48,10 @@ export default class Laugh extends PureComponent {
                             </article>
                             {list_newest.map(object => (
                                 <article className="art-lastest" key={object.id}>
-                                    <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                        <a><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`}><img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} /></a>
                                     <div className="des">
                                         <h4 className="hasComment">
-                                            <Link as={`/${object.object_slug}/${object.id}.html`} href={`/post?id=${object.id}`}>
-                                                <a>{object.object_title}</a>
-                                            </Link>
+                                            <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                         </h4>
                                     </div>
                                 </article>

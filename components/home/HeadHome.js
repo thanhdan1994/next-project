@@ -31,7 +31,7 @@ export default class HeadHome extends PureComponent {
                 <link href="/static/css/style.min.css" rel="stylesheet" />
                 <script src="/static/js/lib.min.js"></script>
                 <script src="/static/js/lazysizes.min.js" async></script>
-                {/* <script src="//player.tuoitre.vn/player/static/playerInit.js"></script> */}
+                <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>
                 {/* GENERAL GOOGLE SEARCH META */}
                 <JsonLd data={this.props.ldJson} />
             </Head>

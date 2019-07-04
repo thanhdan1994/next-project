@@ -8,7 +8,6 @@ import Video from '../components/home/Video.js';
 import Laugh from '../components/home/Laugh.js';
 import Entertainment from '../components/home/Entertainment.js';
 import Last from '../components/home/Last.js';
-import ReactDom from 'react-dom';
 
 class Index extends Component {
   static async getInitialProps() {
@@ -21,7 +20,7 @@ class Index extends Component {
       headers
     })
     const dataRegion1 = await resRegion1.json();
-    const dataSuggestBar = (dataRegion1.data.ttc_utils)[0];
+    const dataSuggestBar = (dataRegion1.data.ttc_utils)[0].list;
     const dataFeatured = (dataRegion1.data.ttc_featured_news)[0];
     // list new
     const resDataMiddleSection = await fetch('https://apittc.tuoitre.vn/ttc/site?type=feature&slug=ttc-home&region=2', {
@@ -39,7 +38,7 @@ class Index extends Component {
       headers
     })
     const dataAside = await resHighlights.json();
-    const listAside = dataAside.data.ttc_custom_list[0];
+    const listAside = dataAside.data.ttc_custom_list[0].sidebar_table_mostview_mostview;
     const dataMiddle = {
       listAside,
       listSection
@@ -69,34 +68,6 @@ class Index extends Component {
       dataLastBlock
     }
   }
-
-  componentDidMount() {
-    var video = document.getElementsByTagName('video')[0];
-    // window.addEventListener('scroll', () => {
-    //   video.play();
-    // })
-    if ($(".btn-top").length > 0) {
-      $(window).scroll(function () {
-        var e = $(window).scrollTop();
-        if (e > 100) {
-          $(".btn-top").show()
-        } else {
-          $(".btn-top").hide()
-        }
-      });
-      $(".btn-top").click(function () {
-        $('body,html').animate({
-          scrollTop: 0
-        })
-      });
-    }
-  }
-
-  componentWillUnmount(e) {
-    var video = document.getElementsByTagName('video')[0];
-    video.muted = true;
-  }
-
   render() {
     const ldJson = {
       "@context": "http://schema.org",
@@ -114,6 +85,8 @@ class Index extends Component {
             <SuggestBar lists={this.props.dataSuggestBar} />
             <FeaturedNews lists={this.props.dataFeatured} />
             <span className="line-border"></span>
+            <MiddleContent lists={this.props.dataMiddle} />
+            <span className="line-border"></span>
             <Video lists={this.props.dataVideo} />
             <span className="line-border"></span>
             <Laugh data={this.props.dataLaugh} />
@@ -121,8 +94,6 @@ class Index extends Component {
             <Entertainment data={this.props.dataEntertainment} />
             <span className="line-border"></span>
             <Last dataLeft={this.props.dataLastBlock.listLeft} dataRight={this.props.dataLastBlock.listRight} />
-            <span className="line-border"></span>
-            <MiddleContent lists={this.props.dataMiddle} />
           </div>
         </div>
       </>

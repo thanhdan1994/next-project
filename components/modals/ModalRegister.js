@@ -98,7 +98,7 @@ export default function Register() {
                                 <div className="inner-code">
                                     <input className="form-control" type="text" name="name" />
                                     <div className="img-code">
-                                        <img src="/static/img/code.jpg" />
+                                        <img id="captcha-image" src={`https://sbetacuoi.tuoitre.vn/index.php?r=site%2Fcaptcha&amp;v=ffffffffffff.asssssssssssss`} />
                                     </div>
                                     <a className="btn-refesh" href="#">Lấy mã mới</a>
                                 </div>

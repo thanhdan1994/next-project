@@ -1,20 +1,20 @@
-import Link from 'next/link'
+import { echoThumbnail } from '../../constant/Helpers';
 function LastBlock(props) {
+    const object_prior = props.dataLastBlock[0]; // get first item in array
     return (
         <div className="block-enter">
             <div className="outer">
                 <article className="art-enter art-b">
-                    <Link as={`/post/${props.prior[0].object_id}`} href={`/post?id=${props.prior[0].object_id}`}>
-                        <a className="thumbs"><img src={props.prior[0].thumb_link} /><i className="icon icon-video" /></a>
-                    </Link>
+                    <a className="thumbs" href={`/${object_prior.object_slug}/${object_prior.id}.html`}>
+                        <img className="lazyload" data-src={echoThumbnail('s475', object_prior.object_thumbnail)} />
+                        { object_prior.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                    </a>
                     <div className="des">
                         <h3 className="hasComment">
-                            <Link as={`/post/${props.prior[0].object_id}`} href={`/post?id=${props.prior[0].object_id}`}>
-                                <a>{props.prior[0].title}</a>
-                            </Link>
+                            <a href={`/${object_prior.object_slug}/${object_prior.id}.html`}>{object_prior.object_title}</a>        
                         </h3>
                         <a className="link-cat">Nghe đồn là</a>
-                        <p>{props.prior[0].description}</p>
+                        <p>{object_prior.object_excerpt}</p>
                     </div>
                 </article>
                 <div className="block-bar block-qc">
@@ -23,20 +23,19 @@ function LastBlock(props) {
             </div>
             <div className="list-enter">
                 <div className="row">
-                    {props.lists.map((object, index) => (
+                    {props.dataLastBlock.map((object, index) => index > 0 ? (
                         <div className="col" key={index}>
                             <article className="art-enter-s">
-                                <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                    <a><img src={object.thumb_link} /></a>
-                                </Link>
+                                <a href={`/${object.object_slug}/${object.id}.html`}>
+                                    <img className="lazyload" data-src={echoThumbnail('s226', object.object_thumbnail)} />
+                                    { object.term_primary == process.env.TTC_TERM_VIDEO ? <i className="icon icon-video" /> : ''}
+                                </a>
                                 <h3>
-                                    <Link as={`/post/${object.object_id}`} href={`/post?id=${object.object_id}`}>
-                                        <a>{object.title}</a>
-                                    </Link>
+                                    <a href={`/${object.object_slug}/${object.id}.html`}>{object.object_title}</a>
                                 </h3>
                             </article>
                         </div>
-                    ))}
+                    ) : '')}
                 </div>
             </div>
         </div>
