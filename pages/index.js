@@ -51,8 +51,8 @@ class Index extends Component {
     const dataVideo = dataRegion4.data.ttc_media[0];
     const dataLaugh = dataRegion4.data.ttc_custom_list[0].horizontal_2.data;
     const dataEntertainment = dataRegion4.data.ttc_custom_list[1].vertical_3.data;
-    const listLeft = dataRegion4.data.ttc_custom_list[2]['2_columns_'].list_left;
-    const listRight = dataRegion4.data.ttc_custom_list[2]['2_columns_'].list_right;
+    const listLeft = dataRegion4.data.ttc_custom_list[2].term_2_columns.list_left;
+    const listRight = dataRegion4.data.ttc_custom_list[2].term_2_columns.list_right;
     const dataLastBlock = {
       listLeft,
       listRight
