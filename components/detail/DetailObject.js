@@ -1,6 +1,6 @@
 import Comment from '../comment/Comment'
 import HighLights from './HighLights';
-import { echoThumbnail, timeSince } from '../../constant/Helpers';
+import { echoThumbnail, timeSince, getIcon } from '../../constant/Helpers';
 
 function createMarkup(content) {
     return { __html: content };
@@ -12,7 +12,7 @@ function DetailObject(props) {
     const splitTerm = termPrimary.slug.split('/');
     const termLink = splitTerm[splitTerm.length - 1];
     return (
-        <div>
+        <>
             <ul className="list-cat list-cat-1">
                 <li><a href="javascript:void(0)" rel="nofollow" title="Breaking news" className="icon-direction"> </a>
                 </li>
@@ -20,19 +20,28 @@ function DetailObject(props) {
                 <li><a href={props.tags[1].tag_link}>{props.tags[1].tag_name}</a></li>
                 <li><a href={props.tags[3].tag_link}>{props.tags[3].tag_name}</a></li>
             </ul>
-            <h2 className="title">
-                <i className="icon icon-news" />
-                <div className="inner-title">
-                    <h2 className="active"><a href="/tin-tuc">Tin tức</a>
-                    </h2>
-                    <ul className="list-cat">
-                        <li className={termPrimary.id == process.env.TTC_TERM_DOI_CUOI ? 'active' : ''}><a href="/doi-cuoi">Đời cười</a></li>
-                        <li className={termPrimary.id == process.env.TTC_TERM_GIAI_TRI ? 'active' : ''}><a href="/giai-tri">Giải trí</a></li>
-                        <li className={termPrimary.id == process.env.TTC_TERM_SONG_TRE ? 'active' : ''}><a href="/song-tre">Sống trẻ</a></li>
-                        <li className={termPrimary.id == process.env.TTC_TERM_THE_THAO ? 'active' : ''}><a href="/the-thao">Thể thao</a></li>
-                    </ul>
-                </div>
-            </h2>
+            {termPrimary.id != process.env.TTC_TERM_BIEM_HOA ?
+                <h2 className="title">
+                    {getIcon(termPrimary.id)}
+                    <div className="inner-title">
+                        <h2 className="active"><a href="/tin-tuc">Tin tức</a>
+                        </h2>
+                        <ul className="list-cat">
+                            <li className={termPrimary.id == process.env.TTC_TERM_DOI_CUOI ? 'active' : ''}><a href="/doi-cuoi">Đời cười</a></li>
+                            <li className={termPrimary.id == process.env.TTC_TERM_GIAI_TRI ? 'active' : ''}><a href="/giai-tri">Giải trí</a></li>
+                            <li className={termPrimary.id == process.env.TTC_TERM_SONG_TRE ? 'active' : ''}><a href="/song-tre">Sống trẻ</a></li>
+                            <li className={termPrimary.id == process.env.TTC_TERM_THE_THAO ? 'active' : ''}><a href="/the-thao">Thể thao</a></li>
+                        </ul>
+                    </div>
+                </h2> : 
+                <h2 className="title">
+                    <i id="iconx" className="icon icon-caricature" />
+                    <div className="inner-title">
+                        <h2 className="active"><a href="/biem-hoa"> Biếm Họa</a>
+                        </h2>
+                    </div>
+                </h2>
+            }
             <div className="row-1">
                 <div className="box-665">
                     <article className="art-header">
@@ -92,7 +101,7 @@ function DetailObject(props) {
                     <HighLights listHighlights={props.listHighlights} />
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default DetailObject

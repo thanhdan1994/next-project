@@ -29,6 +29,9 @@ export default class HeadHome extends PureComponent {
                 <meta name="twitter:site" content="tuoitrecuoi.vn" />
                 <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
                 <link href="/static/css/style.min.css" rel="stylesheet" />
+                {/* <link href="//player.tuoitre.vn/player/static/videoplayer.core.css" type="text/css" rel="stylesheet"></link>
+                <link href="//player.tuoitre.vn/player/static/vpcustom.css" type="text/css" rel="stylesheet"></link>
+                <link href="/static/css/custom-videojs.css" type="text/css" rel="stylesheet"></link> */}
                 <script src="/static/js/lib.min.js"></script>
                 <script src="/static/js/lazysizes.min.js" async></script>
                 <script src="//player.tuoitre.vn/player/static/playerInit.js"></script>

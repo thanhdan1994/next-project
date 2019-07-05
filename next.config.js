@@ -5,7 +5,6 @@ if (dotEnvResult.error) {
 }
 
 const isProd = process.env.NODE_ENV === 'production'
-console.log(process.env.TTC_TERM_VIDEO)
 module.exports = {
     distDir: '.next',
     target: 'serverless',

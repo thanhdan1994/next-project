@@ -58,7 +58,7 @@ export function timeSince(date) {
 
     var interval = Math.floor(seconds / 31536000);
 
-    if (interval > 1) {
+    if (interval >= 1) {
         return interval + " năm";
     }
     interval = Math.floor(seconds / 2592000);
@@ -66,16 +66,33 @@ export function timeSince(date) {
         return interval + " tháng";
     }
     interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
+    if (interval >= 1) {
         return interval + " ngày";
     }
     interval = Math.floor(seconds / 3600);
-    if (interval > 1) {
+    if (interval >= 1) {
         return interval + " giờ";
     }
     interval = Math.floor(seconds / 60);
-    if (interval > 1) {
+    if (interval >= 1) {
         return interval + " phút";
     }
     return Math.floor(seconds) + " giây";
+}
+
+export function getIcon(term) {
+    switch (term) {
+        case Number(process.env.TTC_TERM_DOI_CUOI):
+            return <i className="icon icon-laugh" />;
+        case Number(process.env.TTC_TERM_GIAI_TRI):
+            return <i className="icon icon-enter" />;
+        case Number(process.env.TTC_TERM_SONG_TRE):
+            return <i className="icon icon-young" />;
+        case Number(process.env.TTC_TERM_THE_THAO) : 
+            return <i className="icon icon-sport" />;
+        case Number(process.env.TTC_TERM_TIN_TUC):
+            return <i className="icon icon-news" />;
+        default:
+            return <i className="icon icon-news" />;
+    }
 }
